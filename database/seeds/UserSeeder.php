@@ -20,5 +20,15 @@ class UserSeeder extends Seeder
         $user->password = Hash::make('admin');
         $user->is_admin = true;
         $user->save();
+
+
+        //prueba
+        $user = new User();
+        $user->name = "Prueba";
+        $user->email = "prueba@prueba.com";
+        $user->password = Hash::make('prueba');
+        $user->is_admin = false;
+        $user->save();
+
     }
 }

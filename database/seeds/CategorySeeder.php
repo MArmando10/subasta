@@ -11,6 +11,16 @@ class CategorySeeder extends Seeder
      */
     public function run()
     {
-        //
+        // ----- Generales -----
+        // Nuevo
+        // Usado
+
+
+        // ----- Por tipo -----
+        // Electronica
+        // Consumo
+        // Hogar
+        // Oficina
+        // Vehiculo
     }
 }

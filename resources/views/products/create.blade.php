@@ -3,6 +3,13 @@
 @section('content')
 
 <div class="container">
+   <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+       <li class="breadcrumb-item"><a href="">Inicio</a></li>
+       <li class="breadcrumb-item"><a href="{{route('product.index')}}">Subasta GOI</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Creación de subasta</li>
+    </ol>
+  </nav>
 
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -167,7 +174,7 @@
   <!-- boton guardar formulario -->
                   <div>
                     <div class="d-flex justify-content-between mb-8"><label>
-                   <button  class="btn btn-primary" role="button" href="">Regresar</button></label>
+                   <button type="submit" class="btn btn-primary"><i class="fas fa-save" id="btnComprobar"></i> Regresar</button></label>
                  
                  <div> <label><button type="submit" class="btn btn-primary"><i class="fas fa-save" id="btnComprobar"></i> Guardar y continuar</button></label>
                 </div>

@@ -1,10 +1,11 @@
-@extends('layouts.layout')
+@extends('layouts.app')
+
 
 @section('breadcrumbs')
 
   <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
-       <li class="breadcrumb-item"><a href="{{route('home')}}">Inicio</a></li>
+       <li class="breadcrumb-item"><a href="">Inicio</a></li>
       <li class="breadcrumb-item active" aria-current="page">Subasta GOI</li>
     </ol>
   </nav>
@@ -21,47 +22,28 @@
       <div class="alert alert-info">{{Session::get('message')}}</div>
     @endif
 
-  @if(Auth::user()->can('USUARIO-CREATE') || Auth::user()->can('TODO') )
 
-      <a class="btn btn-secondary mb-5" href="{{ route('products.create') }}">Agregar producto </a>
+      <a class="btn btn-secondary mb-5" href="{{route('product.create')}}">Agregar producto </a>
       
-   @endif
-    <br>
+ 
+ {{--    <br>
   @if(isset($usuario))
 <div class="table-responsive">
 <table class="table table-striped" style="text-align:center">
-{{-- <table class="table mt-5" id="miTabla"> --}}
+<table class="table mt-5" id="miTabla">
     <thead class="thead-dark">
         <tr>
-            <{{-- th scope="col">cambio en la dinamica</th>
-            <th scope="col">Necesidades de atención</th>
-            <th scope="col">Daño patrimonial</th>
-            <th scope="col">Opciones</th> --}}
+       
         </tr>
     </thead>
     <tbody>
 
-         @foreach($usuario as $u)
-        <tr>
-            {{-- <th scope="row">{{ $u->id }}</th> --}}
-          {{--   <td>{{ $u->cambio }}</td>
-            <td>{{ $u->necesidades}}</td>
-            <td>{{ $u->daño }}</td> --}}
-
-            <td>
-              <div>
-                hols
-              </div>
-
-
-            </td>
-        </tr>
         @endforeach
     </tbody>
 </table>
 
 
-</div>
-@endif
+</div> --}}
+
 
 @endsection

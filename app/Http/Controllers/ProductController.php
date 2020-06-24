@@ -20,7 +20,8 @@ class ProductController extends Controller
      */
     public function index(Request $request)
     {
-    
+        
+
         return view('products.index');
      
     }
@@ -32,15 +33,7 @@ class ProductController extends Controller
      */
     public function create(Request $request)
     {
-           //dd($request);
-
-     // if(Auth::user()->can('usuario-CREATE') || Auth::user()->can('TODO')){
-
-    //   return view("product.benefi",compact('municipios','beneficiarios','desaparecidoID','entidades'));
-    // }   else{
-    //         Session::flash('message','Error no puedes crear productos');
-    //         return redirect()->route('home');
-    //         }
+        
         return view('products.create');
     }
 
@@ -52,7 +45,7 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request);
+        // dd($request);
          $request->validate([
         
         'title' => 'required',

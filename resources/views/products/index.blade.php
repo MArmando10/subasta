@@ -49,7 +49,9 @@
             <td>{{ $u->daño }}</td> --}}
 
             <td>
-
+              <div>
+                hols
+              </div>
 
 
             </td>

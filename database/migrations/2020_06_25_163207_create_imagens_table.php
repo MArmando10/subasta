@@ -15,6 +15,11 @@ class CreateImagensTable extends Migration
     {
         Schema::create('imagens', function (Blueprint $table) {
             $table->id();
+            $table->string('nombre');
+            $table->string('url');
+            $table->foreignId('product_id');
+
+
             $table->timestamps();
         });
     }

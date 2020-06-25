@@ -45,8 +45,7 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-      
-         $request->validate([
+        $request->validate([
             'titulo' => 'required',
             'categoria'=>'required',
             'condicion'=>'required',
@@ -63,10 +62,15 @@ class ProductController extends Controller
             'Ancho'=>'required',
             'Largo'=>'required',
             'Peso'=>'required',
-            'geografi' => 'required'
+            'geografi' => 'required',
+            'images' => 'required',
         ]);
-          
-
+        
+        //dd($request);
+        $files = $request->file('images');
+        
+        return $files[0];
+        //return $files[0]->getClientOriginalName();
  
             DB::table('products')->updateOrInsert(
                 [
@@ -86,10 +90,19 @@ class ProductController extends Controller
                 'Ancho'=>request()->input('Ancho'),
                 'Largo'=>request()->input('Largo'),
                 'Peso'=>request()->input('Peso'),
-                'geografi'=>request()->input('geografi')
+                'geografi'=>request()->input('geografi'),
+                'images'=>request()->input('images'),
 
             ]);
-              // dd($request);
+            foreach ($files as $file) {
+                DB::table('imagens')->updateOrInsert(
+                [
+                    'nombre'=> $file->getClientOriginalName(),
+                    'url' => $file 
+
+            ]);
+        }
+              dd($request);
             Session::flash('message','guardada con exito.');
             return redirect()->route('product.index');
   

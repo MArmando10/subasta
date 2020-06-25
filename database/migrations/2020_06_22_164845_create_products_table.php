@@ -33,6 +33,9 @@ class CreateProductsTable extends Migration
             $table->integer('Largo');
             $table->integer('Peso');
             $table->string('geografi');  
+            $table->foreignId('images_id');
+
+            $imagen->url = $request->input('url');
            
             //nombre
             //reputacion

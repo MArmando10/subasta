@@ -10,6 +10,10 @@ use App\Products;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Http\Request;
+use App\Product;
+use App\imagen;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Http\File;
 
 class ProductController extends Controller
 {
@@ -68,41 +72,78 @@ class ProductController extends Controller
         
         //dd($request);
         $files = $request->file('images');
+
+        $producto = new Product();
+
+        $producto->titulo  =request()->input('titulo');
+        $producto->categoria =request()->input('categoria');
+        $producto->condicion =request()->input('condicion');
+        $producto->marca =request()->input('marca');
+        $producto->descripcion =request()->input('descripcion');
+        $producto->duracion =request()->input('duracion');
+        $producto->fechaInicio =request()->input('fechaInicio');
+        $producto->precioInicial =request()->input('precioInicial');
+        $producto->precioReserva =request()->input('precioReserva');
+        $producto->cantidad =request()->input('cantidad');
+        $producto->Destino =request()->input('Destino');
+        $producto->Alto =request()->input('Alto');
+        $producto->Ancho =request()->input('Ancho');
+        $producto->Largo =request()->input('Largo');
+        $producto->Peso =request()->input('Peso');
+        $producto->geografi =request()->input('geografi');
+
+        $producto->save();
         
-        return $files[0];
+        
+
+        //return $files[0];
         //return $files[0]->getClientOriginalName();
- 
-            DB::table('products')->updateOrInsert(
-                [
-                'titulo'=>request()->input('titulo'),
-                'categoria'=>request()->input('categoria'),
-                'condicion'=>request()->input('condicion'),
-                'marca'=>request()->input('marca'),
-                'descripcion'=>request()->input('descripcion'),
-                'duracion'=>request()->input('duracion'),
-                'fechaInicio'=>request()->input('fechaInicio'),
-                'precioInicial'=>request()->input('precioInicial'),
-                'precioReserva'=>request()->input('precioReserva'),
-                'cantidad'=>request()->input('cantidad'),
-                // 'refundSwitch'=>request()->input('refundSwitch'),
-                'Destino'=>request()->input('Destino'),
-                'Alto'=>request()->input('Alto'),
-                'Ancho'=>request()->input('Ancho'),
-                'Largo'=>request()->input('Largo'),
-                'Peso'=>request()->input('Peso'),
-                'geografi'=>request()->input('geografi'),
-                'images'=>request()->input('images'),
 
-            ]);
+
+            // DB::table('products')->updateOrInsert(
+            //     [
+            //     'titulo'=>request()->input('titulo'),
+            //     'categoria'=>request()->input('categoria'),
+            //     'condicion'=>request()->input('condicion'),
+            //     'marca'=>request()->input('marca'),
+            //     'descripcion'=>request()->input('descripcion'),
+            //     'duracion'=>request()->input('duracion'),
+            //     'fechaInicio'=>request()->input('fechaInicio'),
+            //     'precioInicial'=>request()->input('precioInicial'),
+            //     'precioReserva'=>request()->input('precioReserva'),
+            //     'cantidad'=>request()->input('cantidad'),
+            //     // 'refundSwitch'=>request()->input('refundSwitch'),
+            //     'Destino'=>request()->input('Destino'),
+            //     'Alto'=>request()->input('Alto'),
+            //     'Ancho'=>request()->input('Ancho'),
+            //     'Largo'=>request()->input('Largo'),
+            //     'Peso'=>request()->input('Peso'),
+            //     'geografi'=>request()->input('geografi'),
+            //     'images'=>request()->input('images'),
+
+            // ]);
             foreach ($files as $file) {
-                DB::table('imagens')->updateOrInsert(
-                [
-                    'nombre'=> $file->getClientOriginalName(),
-                    'url' => $file 
 
-            ]);
-        }
-              dd($request);
+                $archivo = Storage::putFile('imagenes', $file);
+
+                $imagen = new imagen();
+                $imagen->nombre = $file->getClientOriginalName();
+                $imagen->url = $archivo;
+                $imagen->product_id = $producto->id;
+                
+                $imagen->save();
+            }
+            //return "ID:  ".$producto->id;
+
+            //     DB::table('imagens')->updateOrInsert(
+            //     [
+            //         'nombre'=> $file->getClientOriginalName(),
+            //         'url' => $file ,
+            //         'producto_id' => $producto->id,
+
+            // ]);
+        
+              //dd($request);
             Session::flash('message','guardada con exito.');
             return redirect()->route('product.index');
   

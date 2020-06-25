@@ -24,7 +24,7 @@ class ProductController extends Controller
      */
     public function index(Request $request)
     {
-        
+         
        
         return view('products.index');
      

@@ -20,13 +20,14 @@
             
                 <div class="card-body">
 
-                  {!! Form::open(['route' => 'product.store', 'method' => 'post', 'files' => true], ['class' => 'inline-form']) !!}
+                  {!! Form::open(['action' => 'ProductController@store', 'method' => 'post', 'files' => true], ['class' => 'inline-form']) !!}
                   <div><h5>Detalles del producto</h5></div>
+                  {{$errors}}
                   <!-- Titulo -->
                   <div class="form-group row">
                     {{ Form::label('Titulo', null, ['class' => 'col-sm-2 col-form-label']) }}
                     <div class="col-sm-10">
-                      {{ Form::text('title', '', array_merge(['class' => 'form-control'] )) }}
+                      {{ Form::text('titulo', '', array_merge(['class' => 'form-control'] )) }}
                     </div>
                   </div>
                   <!-- Fotos -->  
@@ -45,28 +46,28 @@
                   <div class="form-group row">
                     {{ Form::label('Categoria', null, ['class' => 'col-sm-2 col-form-label']) }}
                     <div class="col-sm-10">
-                      {{ Form::select('category', ['1' => 'Large', '2' => 'Small'], 'category_id', ['class' => 'form-control']) }}
+                      {{ Form::select('categoria', ['1' => 'Large', '2' => 'Small'], 'categoria', ['class' => 'form-control']) }}
                     </div>
                   </div>
                   <!-- Condicion -->
                   <div class="form-group row">
                     {{ Form::label('Condición', null, ['class' => 'col-sm-2 col-form-label']) }}
                     <div class="col-sm-10">
-                      {{ Form::select('condition', ['1' => 'Nuevo', '2' => 'Usado'], 'condition_id', ['class' => 'form-control']) }}
+                      {{ Form::select('condicion', ['1' => 'Nuevo', '2' => 'Usado'], 'condicion', ['class' => 'form-control']) }}
                     </div>
                   </div>
                   <!-- Marca -->
                   <div class="form-group row">
                     {{ Form::label('Marca', null, ['class' => 'col-sm-2 col-form-label']) }}
                     <div class="col-sm-10">
-                      {{ Form::text('trademark', '', array_merge(['class' => 'form-control'] )) }}
+                      {{ Form::text('marca', '', array_merge(['class' => 'form-control'] )) }}
                     </div>
                   </div>
                   <!-- Descripcion -->
                   <div class="form-group row">
                     {{ Form::label('Descripción', null, ['class' => 'col-sm-2 col-form-label']) }}
                     <div class="col-sm-10">
-                      {{ Form::textarea('description', null, ['id' => 'keterangan', 'rows' => 4, 'class' => 'form-control']) }}
+                      {{ Form::textarea('descripcion', null, ['id' => 'keterangan', 'rows' => 4, 'class' => 'form-control']) }}
                     </div>
                   </div>
                   <div><h5>Detalles de venta</h5></div>
@@ -74,14 +75,14 @@
                   <div class="form-group row">
                     {{ Form::label('Duración', null, ['class' => 'col-sm-2 col-form-label']) }}
                     <div class="col-sm-10">
-                      {{ Form::select('duration', ['1' => '1 Día', '2' => '2 Días'], 'condition_id', ['class' => 'form-control']) }}
+                      {{ Form::select('duracion', ['1' => '1 Día', '2' => '2 Días'], 'duracion', ['class' => 'form-control']) }}
                     </div>
                   </div>
                   <!-- Horario para comenzar -->
                   <div class="form-group row">
                     {{ Form::label('Inicio', null, ['class' => 'col-sm-2 col-form-label']) }}
                     <div class="col-10">
-                      {{ Form::datetimeLocal('dateStart', \Carbon\Carbon::now(), ['id' => 'dateTimeInput', 'class' => 'form-control']) }}
+                      {{ Form::datetimeLocal('fechaInicio', \Carbon\Carbon::now(), ['id' => 'fechaInicio', 'class' => 'form-control']) }}
                     </div>
                   </div>
                   <!-- Precio inicial -->
@@ -89,7 +90,7 @@
                     {{ Form::label('Precio inicial', null, ['class' => 'col-sm-2 col-form-label']) }}
                     <div class="col-sm-10">
                       <div class="input-group">
-                        {{ Form::text('startPrice', '', ['aria-label'=> 'Dollar amount (with dot and two decimal places)', 'class' => 'form-control']) }}
+                        {{ Form::text('precioInicial', '', ['aria-label'=> 'Dollar amount (with dot and two decimal places)', 'class' => 'form-control']) }}
                         <div class="input-group-append">
                           <span class="input-group-text">$</span>
                         </div>
@@ -101,7 +102,7 @@
                     {{ Form::label('Precio reserva', null, ['class' => 'col-sm-2 col-form-label']) }}
                     <div class="col-sm-10">
                       <div class="input-group">
-                        {{ Form::text('endPrice', '', ['aria-label'=> 'Dollar amount (with dot and two decimal places)', 'class' => 'form-control']) }}
+                        {{ Form::text('precioReserva', '', ['aria-label'=> 'Dollar amount (with dot and two decimal places)', 'class' => 'form-control']) }}
                         <div class="input-group-append">
                           <span class="input-group-text">$</span>
                         </div>
@@ -117,12 +118,12 @@
                   </div>
                   <div><h5>Detalles de devolución</h5></div>
                   <!-- Devolucion -->
-                  <div class="form-group row" style="padding: 0rem 1rem;">
+                  {{-- <div class="form-group row" style="padding: 0rem 1rem;">
                     <div class="custom-control custom-switch">
                       {{ Form::checkbox('refund', 'value', false, ['class' => 'custom-control-input', 'id' => 'refundSwitch' ]) }}
                       {{ Form::label('refundSwitch', null, ['class' => 'custom-control-label']) }}
                     </div>
-                  </div>
+                  </div> --}}
                     <!-- Detalles de envio -->
                   <h5>Detalles de envío</h5>
                    <!-- Destino -->
@@ -136,13 +137,13 @@
                     {{ Form::label('Alto',null,['class'=>'col-sm-2 col-form-label']) }}
                     <div class="col-sm-2">
                        {{ Form::number('Alto', '', ['class' => 'form-control']) }}
-                       {{ Form::select('Alto', ['1' => 'cm', '2' => 'mm', '3' => 'm'], 'condition_id', ['class' => 'form-control']) }}
+                       {{ Form::select('Alto', ['1' => 'cm', '2' => 'mm', '3' => 'm'], 'Alto', ['class' => 'form-control']) }}
                     </div>   
                                     
                   {{ Form::label('Ancho',null,['class'=>'col-sm-4 col-form-label']) }}
                     <div class="col-sm-2">
                        {{ Form::number('Ancho', '', ['class' => 'form-control']) }}
-                       {{ Form::select('Ancho', ['1' => 'cm', '2' => 'mm', '3' => 'm'], 'condition_id', ['class' => 'form-control']) }}
+                       {{ Form::select('Ancho', ['1' => 'cm', '2' => 'mm', '3' => 'm'], 'Ancho', ['class' => 'form-control']) }}
                     </div>
                   </div>
 
@@ -150,7 +151,7 @@
                     {{ Form::label('Largo',null,['class'=>'col-sm-4 col-form-label']) }}
                     <div class="col-sm-4">
                        {{ Form::number('Largo', '', ['class' => 'form-control']) }}
-                       {{ Form::select('Largo', ['1' => 'cm', '2' => 'mm', '3' => 'm'], 'condition_id', ['class' => 'form-control']) }}
+                       {{ Form::select('Largo', ['1' => 'cm', '2' => 'mm', '3' => 'm'], 'Largo', ['class' => 'form-control']) }}
                     </div>   
                   </div>
                     <!-- Peso del producto -->
@@ -158,7 +159,7 @@
                     {{ Form::label('Peso',null,['class'=>'col-sm-4 col-form-label']) }}
                     <div class="col-sm-4">
                        {{ Form::number('Peso', '', ['class' => 'form-control']) }}
-                       {{ Form::select('Peso', ['1' => 'kg', '2' => 'mg', '3' => 'g'], 'condition_id', ['class' => 'form-control']) }}
+                       {{ Form::select('Peso', ['1' => 'kg', '2' => 'mg', '3' => 'g'], 'Peso', ['class' => 'form-control']) }}
                     </div> 
                 </div>
                   <!-- ubicacion del articulo -->
@@ -173,13 +174,23 @@
                   </div>
   <!-- boton guardar formulario -->
                   <div>
-                    <div class="d-flex justify-content-between mb-8"><label>
-                   <button type="submit" class="btn btn-primary"><i class="fas fa-save" id="btnComprobar"></i> Regresar</button></label>
+                    <div class="d-flex justify-content-between mb-8">
+                      {{Form::submit('Continuar!', ['class' => 'fas fa-save'])}}
+                    </div>
+                  </div>
+
+                   {{-- <button type="submit" class="btn btn-primary"><i class="fas fa-save" id="btnComprobar"></i> Regresar</button></label> --}}
                  
-                 <div> <label><button type="submit" class="btn btn-primary"><i class="fas fa-save" id="btnComprobar"></i> Guardar y continuar</button></label>
-                </div>
+                 {{-- <div> <label><button type="submit" class="btn btn-primary"><i class="fas fa-save" id="btnComprobar"></i> Guardar y continuar</button></label> --}}
+                
 
                   {!! Form::close() !!}
+              </div>
+            </div>
+          </div>
+        </div>
+
+
 
             
 </div>

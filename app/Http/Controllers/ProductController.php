@@ -21,7 +21,7 @@ class ProductController extends Controller
     public function index(Request $request)
     {
         
-
+       
         return view('products.index');
      
     }
@@ -33,7 +33,7 @@ class ProductController extends Controller
      */
     public function create(Request $request)
     {
-        
+       
         return view('products.create');
     }
 
@@ -45,48 +45,53 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request);
+      
          $request->validate([
-        
-        'title' => 'required',
-        'condition'=>'required',
-        'trademark'=>'required',
-        'description'=>'required',
-        'duration'=>'required',
-        'dateStart'=>'required',
-        'startPrice'=>'required',
-        'endPrice'=>'required',
-        'cantidad'=>'required',
-        'refundSwitch'=>'required',
-        'Destino'=>'required',
-        'Alto'=>'required',
-        'Ancho'=>'required',
-        'Largo'=>'required',
-        'Peso'=>'required',
-        'geografi' => 'required'
-    ]);
-         // dd($request);
-            DB::table('subastagoi')->updateOrInsert(
+            'titulo' => 'required',
+            'categoria'=>'required',
+            'condicion'=>'required',
+            'marca'=>'required',
+            'descripcion'=>'required',
+            'duracion'=>'required',
+            'fechaInicio'=>'required',
+            'precioInicial'=>'required',
+            'precioReserva'=>'required',
+            'cantidad'=>'required',
+            // 'refundSwitch'=>'required',
+            'Destino'=>'required',
+            'Alto'=>'required',
+            'Ancho'=>'required',
+            'Largo'=>'required',
+            'Peso'=>'required',
+            'geografi' => 'required'
+        ]);
+          
+
+ 
+            DB::table('products')->updateOrInsert(
                 [
-                'title'=>request()->input('title'),
-                'condition'=>request()->input('condition'),
-                'trademark'=>request()->input('trademark'),
-                'description'=>request()->input('description'),
-                'duration'=>request()->input('duration'),
-                'dateStart'=>request()->input('dateStart'),
-                'startPrice'=>request()->input('startPrice'),
-                'endPrice'=>request()->input('endPrice'),
+                'titulo'=>request()->input('titulo'),
+                'categoria'=>request()->input('categoria'),
+                'condicion'=>request()->input('condicion'),
+                'marca'=>request()->input('marca'),
+                'descripcion'=>request()->input('descripcion'),
+                'duracion'=>request()->input('duracion'),
+                'fechaInicio'=>request()->input('fechaInicio'),
+                'precioInicial'=>request()->input('precioInicial'),
+                'precioReserva'=>request()->input('precioReserva'),
                 'cantidad'=>request()->input('cantidad'),
-                'refundSwitch'=>request()->input('refundSwitch'),
+                // 'refundSwitch'=>request()->input('refundSwitch'),
                 'Destino'=>request()->input('Destino'),
                 'Alto'=>request()->input('Alto'),
                 'Ancho'=>request()->input('Ancho'),
                 'Largo'=>request()->input('Largo'),
                 'Peso'=>request()->input('Peso'),
                 'geografi'=>request()->input('geografi')
+
             ]);
-         
-      return view('products.index');
+              // dd($request);
+            Session::flash('message','guardada con exito.');
+            return redirect()->route('product.index');
   
     }
 

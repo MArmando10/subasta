@@ -26,24 +26,6 @@
       <a class="btn btn-secondary mb-5" href="{{route('product.create')}}">Agregar producto </a>
       
  
- {{--    <br>
-  @if(isset($usuario))
-<div class="table-responsive">
-<table class="table table-striped" style="text-align:center">
-<table class="table mt-5" id="miTabla">
-    <thead class="thead-dark">
-        <tr>
-       
-        </tr>
-    </thead>
-    <tbody>
-
-        @endforeach
-    </tbody>
-</table>
-
-
-</div> --}}
-
+ 
 
 @endsection

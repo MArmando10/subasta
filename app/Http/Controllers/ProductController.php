@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use DB;
 use Auth;
-use App\user;
+//use App\User;
 use Session;
 use App\Products;
 use Illuminate\Validation\Rule;
@@ -24,10 +24,15 @@ class ProductController extends Controller
      */
     public function index(Request $request)
     {
-        $Products = Product::where('titulo',$request->p)->orderBy('created_at','desc')->with('user')->paginate(6);
-        $p = $request->p;
+        $Users = \App\User::with(['products' => function ($query) {
+            $query->orderBy('created_at', 'desc');
+        }])->get();
+
+
+        //$Products = Product::where('titulo',$request->p)->orderBy('created_at','desc')->with('user')->paginate(10);
+        //$p = $request->p;
        
-        return view('products.index',compact('Products','p'));
+        return view('products.index',compact('Users','Users'));
      
     }
 

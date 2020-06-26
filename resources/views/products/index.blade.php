@@ -38,25 +38,41 @@
 </div>
 
 <div class="container">
-    @foreach ( Auth::user()->products as $producto)
-    <div class="row intro">
-        <div class="col">
-            @foreach ($producto->imagenes as $imagen)
-            <img src="{{asset ($imagen->url)}}" alt="adasd.jpg" width="200">
-            @endforeach
+    @foreach ($Users as $user)
+        @foreach ( $user->products as $producto)
+        <div class="row intro">
+            <div class="col">
+                {{ $producto->imagenes->count() }}
+            
+               {{--  @isset($producto->imagenes)
+                    @if ($producto->imagenes->count() > 0)
+                        {{ $url = $producto->$imagenes ?? $imagenes }}
+                        {{ $url }}
+                        
+                        <img src="{{asset($url->url)}}" alt="adasd.jpg" width="200">
+                       
+                    @endif    
+                @endisset
+                 --}}
+                {{-- 
+                @foreach ($producto->imagenes as $imagen)
+                    <img src="{{asset ($imagen->url)}}" alt="adasd.jpg" width="200">
+                @endforeach
+                --}}
+            </div>
+            <div class="col">
+                <h2  class="card-text">{{$producto->titulo}}</h2>
+                <p class="card-text">{{$producto->marca}}</p>
+                <p class="card-text">{{$producto->precioInicial}}</p>
+            </div>
+            <div class="col">
+                <p class="card-text">{{$producto->descripcion}}</p>
+                <p class="card-text">{{$producto->precioReserva}}</p>
+                <a class="btn btn-secondary mb-5" href="">Más Detalles </a>
+            </div>
         </div>
-        <div class="col">
-            <h2  class="card-text">{{$producto->titulo}}</h2>
-            <p class="card-text">{{$producto->marca}}</p>
-            <p class="card-text">{{$producto->precioInicial}}</p>
-        </div>
-        <div class="col">
-            <p class="card-text">{{$producto->descripcion}}</p>
-            <p class="card-text">{{$producto->precioReserva}}</p>
-            <a class="btn btn-secondary mb-5" href="">Más Detalles </a>
-        </div>
-    </div>
-    <br>
+        <br>
+        @endforeach
     @endforeach
 </div>
 

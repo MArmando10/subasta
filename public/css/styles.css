@@ -1,5 +1,7 @@
-hr1 {
-    height: 10px;
-  background-color: black;
-    overflow: visible;
-  }
+  .intro {
+        margin-top: 10px;
+        border-top-width: 100px;
+        border-top: solid;
+        border-top-color: black;
+        
+    }

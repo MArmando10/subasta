@@ -195,4 +195,38 @@ class ProductController extends Controller
     {
         //
     }
+
+
+    function searchbeneficiarios(Request $request) {
+
+        Session::forget('message');    
+        $anterior = $request->all();
+        if($request->categoria != "" )
+        {    
+           $producto = producto::when($request->categoria,function($query,$request){return $query->where('categoria','like', $request .'%');})
+           ->orderBy('categoria', 'ASC')
+           ->paginate(10)
+           ->setPath ( '' );
+            $producto->appends ( array (
+            'categoria ' => $request->categoria
+            ) );
+         }
+             if(isset($producto)){
+               $count = $producto->total();
+             }else{
+                 $count = 0;
+              }
+
+             if ($count  > 0){
+                 Session::flash('message','Se encontraron '.$count.' registros en la busqueda.');
+      
+                return view('products.index',compact('productos','anterior'));
+             }
+             else{
+                 Session::flash('message','No se encontraron registros en la busqueda.');
+      
+                         return view('products.index',compact('anterior'));
+             }
+          return redirect()->route('products.productsView');
+        }
 }

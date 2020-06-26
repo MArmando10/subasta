@@ -28,18 +28,20 @@
               <div class="card border-info ">
                   <div class="card-body">
                 <div class="container">
-                
-                <img src="cinqueterre.jpg" class="app/imagenes[]" alt="Cinque Terre" width="200" height="136"> 
+                @foreach ( Auth::user()->products as $producto)
+                    @foreach ($producto->imagenes as $imagen)
+
+                <img src="{{asset ($imagen->url)}}" alt="adasd.jpg" > 
+                @endforeach              
+                @endforeach
                 </div>
                 <br>
-                  <h5 class="card-title">Card title</h5>
-                  <p class="card-text">Some quick example text to build on the card title .</p>
-                  <a href="/" class="btn btn-primary">Go somewhere</a>
                 </div>
               </div>
-                      <div class="float-right text-primary"></div>
-                      <h4 class="card-title text-primary"></h4>
-                      <p class="text-info"></p>
+              <h2>Detalles</h2>
+              <p class="card-text">{{$producto->titulo}}</p>
+              <p class="card-text">{{$producto->marca}}</p>
+              <p class="card-text">{{$producto->precioInicial}}</p>
                  
                   </div>
               </div>
@@ -47,6 +49,6 @@
           </div>
           
  
-
+         
 
 @endsection

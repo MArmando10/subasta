@@ -32,7 +32,8 @@ class CreateProductsTable extends Migration
             $table->integer('Ancho');
             $table->integer('Largo');
             $table->integer('Peso');
-            $table->string('geografi'); 
+            $table->string('geografi');
+            $table->foreignId('user_id');
             $table->timestamps();
 
             //$imagen->url = $request->input('url');

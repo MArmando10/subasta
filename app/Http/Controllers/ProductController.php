@@ -24,9 +24,10 @@ class ProductController extends Controller
      */
     public function index(Request $request)
     {
-         
+        $Products = Product::where('titulo',$request->p)->orderBy('created_at','desc')->with('user')->paginate(6);
+        $p = $request->p;
        
-        return view('products.index');
+        return view('products.index',compact('Products','p'));
      
     }
 
@@ -91,6 +92,7 @@ class ProductController extends Controller
         $producto->Largo =request()->input('Largo');
         $producto->Peso =request()->input('Peso');
         $producto->geografi =request()->input('geografi');
+        $producto->user_id = Auth::user()->id;
 
         $producto->save();
         

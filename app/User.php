@@ -5,7 +5,7 @@ namespace App;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-
+use App\Product;
 class User extends Authenticatable
 {
     use Notifiable;
@@ -43,5 +43,9 @@ class User extends Authenticatable
         }else {
             return false;
         }
+    }
+
+    public function products(){
+        return $this->hasMany(Product::class);
     }
 }

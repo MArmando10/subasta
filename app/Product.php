@@ -3,7 +3,10 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Category;
 use App\Imagen;
+use App\User;
+
 
 class Product extends Model
 {
@@ -14,5 +17,9 @@ class Product extends Model
 
     public function imagenes(){
     	return $this->hasMany(Imagen::class);
+    }
+
+    public function user() {
+        return $this->hasOne(User::class);
     }
 }

@@ -24,14 +24,15 @@ class ProductController extends Controller
      */
     public function index(Request $request)
     {
-    // $Products = Product::where('titulo',$request->p)->orderBy('created_at','desc')->with('user')->paginate(3);
-        $Products = DB::table('products')->paginate(3);
-        // $p = $request->p
+    //    $Products = Product::where('titulo',$request->p)->orderBy('created_at','desc')->with('user')->paginate(3);
+    //    $Products = DB::table('products')->ordenBy('desc')->paginate(3);
+        $Products = Product::paginate(5);
+        $p = $request->p;
+        
         $Users = \App\User::with(['products' => function ($query) {
-                $query->orderBy('created_at', 'desc');
-            }])->get();       
-            
-            return view('products.index',compact('Users','Users','Products'));
+            $query->orderBy('created_at', 'desc');
+        }])->get();
+        return view('products.index',compact('Users','Users','Products','p'));
      
     }
 
@@ -161,9 +162,12 @@ class ProductController extends Controller
      * @param  \App\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function show(Product $product)
+    public function show(Product $product )
     {
-        //
+            $Product = product::where('titulo',$product)->paginate(6);//mandamos llamar la variable product, y le indicamos los renglones del formulario
+            // $Products = Products::find($products);
+            // dd($product);
+            return view('products.show',compact('Product','product'));
     }
 
     /**
@@ -175,6 +179,7 @@ class ProductController extends Controller
     public function edit(Product $product)
     {
         //
+        dd($product);
     }
 
     /**
@@ -187,6 +192,7 @@ class ProductController extends Controller
     public function update(Request $request, Product $product)
     {
         //
+        dd($request);
     }
 
     /**

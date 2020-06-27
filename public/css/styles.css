@@ -3,5 +3,11 @@
         border-top-width: 100px;
         border-top: solid;
         border-top-color: black;
-        
     }
+
+ .button1{
+  border-radius: 50%;
+  border-top-color: aqua;
+ }
+
+    

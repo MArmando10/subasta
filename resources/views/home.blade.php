@@ -2,25 +2,53 @@
 
 @section('content')
 
-<div class="">
+<div class="col">
     <div class="bg-secondary">
-        <div>
-            <h4>Mejores Precios</h4>
+        <div class="row">
+        <div class="col-3">
+            <h4 class="text-write">Mejores Precios</h4>
         </div>
         <div class="container-sm">
-            <img src="{{ asset('img/pruebas/headphones.jpg') }}" class="rounded" alt="...">
+            <div class="row">
+                <div class="col-3">
+                    <img src="{{ asset('img/pruebas/headphones.jpg') }}" class="rounded" alt="..." width="200">
+                    {{-- <img src="{{asset ($imagenes->url)}}" alt="adasd.jpg" width="200"> --}}
+                </div>
+                <div class="col-3">
+                    <img src="{{ asset('img/pruebas/headphones.jpg') }}" class="rounded" alt="..." width="200">
+                    {{-- <img src="{{asset ($imagenes->url)}}" alt="adasd.jpg" width="200"> --}}
+                </div>
+            </div>     
         </div>
-
-    </div>
-    
-    <div>
-    
-    </div>
-    
-    <div>
-    
+        </div>
     </div>
 </div>
+<br>    
+
+    <div class="col">
+        <div class="bg-secondary">
+            <div class="col">
+            <div class="row">
+            <div class="col-3">
+                <h4 class="text-write">Explora lo mejor en hogar y cocina</h4>
+            </div>
+            <div class="container-sm">
+                <div class="row">
+                    <div class="col-3">
+                        <img src="{{ asset('img/pruebas/headphones.jpg') }}" class="rounded" alt="..." width="200">
+                    </div>
+                    <div class="col-3">
+                        <img src="{{ asset('img/pruebas/headphones.jpg') }}" class="rounded" alt="..." width="200">
+                    </div>
+                </div>     
+            </div>
+            </div>
+        
+    </div>
+  </div>
+
+    </div>
+</div>  
 
 <div class="container">
     <div class="row justify-content-center">

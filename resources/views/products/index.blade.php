@@ -42,23 +42,23 @@
         @foreach ( $user->products as $producto)
         <div class="row intro">
             <div class="col">
-                {{ $producto->imagenes->count() }}
+                {{-- {{ $producto->imagenes->count() }} --}}
             
-               {{--  @isset($producto->imagenes)
-                    @if ($producto->imagenes->count() > 0)
-                        {{ $url = $producto->$imagenes ?? $imagenes }}
-                        {{ $url }}
+                @isset($producto->imagenes)
+                    {{-- @if ($producto->imagenes->count() > 0)
+                        {{ $url = $producto->$imagen ?? $imagenes }}
+                        {{ $url }} --}}
                         
-                        <img src="{{asset($url->url)}}" alt="adasd.jpg" width="200">
+                        <img src="{{asset($product->url)}}" alt="adasd.jpg" width="200">
                        
-                    @endif    
+                    {{-- @endif     --}}
                 @endisset
-                 --}}
-                {{-- 
+                
+                
                 @foreach ($producto->imagenes as $imagen)
                     <img src="{{asset ($imagen->url)}}" alt="adasd.jpg" width="200">
                 @endforeach
-                --}}
+               
             </div>
             <div class="col">
                 <h2  class="card-text">{{$producto->titulo}}</h2>
@@ -75,5 +75,6 @@
         @endforeach
     @endforeach
 </div>
+{{ $Products->appends('prodtucs')->links() }}
 
 @endsection

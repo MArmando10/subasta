@@ -24,8 +24,8 @@
                             <div class="row">
                                 <div class="col-6">
                                     <br><br>
-                                    @if ($product->imagenes->count() > 1)
-                                    @for ($i = 0; $i < 2; $i++) <img src="{{asset($product->imagenes[$i]->url)}}"
+                                    @if ($product->imagenes->count() > 0)
+                                    @for ($i = 0; $i < 1; $i++) <img src="{{asset($product->imagenes[$i]->url)}}"
                                         alt="adasd.jpg" width="200" class="mx-auto d-block img-fluid">
                                         @endfor
                                         @endif
@@ -39,6 +39,7 @@
                                             <span class="sr-only">Next</span>
                                         </a>
                                 </div>
+                                <p>Tiempo restante: </p>
                                 <div class="col text-center">
                                     <h1 class="card-text text-capitalize">{{$product->titulo}}</h1>
                                     <p>Vendido por: {{$product->name}}</p>
@@ -53,7 +54,7 @@
                                                 </div>
 
                                                 <div class="col bg-secondary text-justify">
-                                                    <input class="test" type="text" name="ofertar" id="">
+                                                    <input class="test" type="text" name="ofertar" id="" solonumeros();>
                                                     <p type="text" style="">Ofrece $ o más</p>
                                                     {{Form::submit('Ofertar', ['class' => 'btn btn-primary mb-5'])}}
                                                 </div>
@@ -71,11 +72,11 @@
                     <div class="col-8 text-center mx-auto d-block">
                         <br>
                         <h2>Caracteristicas</h2>
-                        <h2 class="card-text">{{$product->titulo}}</h2>
-                        <p class="card-text">{{$product->categoria}}</p>
-                        <p class="card-text">{{$product->condición}}</p>
-                        <p class="card-text">{{$product->marca}}</p>
-                        <p class="card-text">{{$product->desccripcion}}</p>
+                        <p class="card-text">Titulo: {{$product->titulo}}</p>
+                        <p class="card-text">Categoría: {{$product->categoria}}</p>
+                        <p class="card-text">Condición: {{$product->condición}}</p>
+                        <p class="card-text">Marca: {{$product->marca}}</p>
+                        <p class="card-text">Descripcion: {{$product->descripcion}}</p>
                     </div>
                     <div class="col">
                         <div class="table-responsive">
@@ -94,7 +95,7 @@
                                 <br>
                                 <div class="row-3 intro">
                                     {{ Form::open(['route' => ['product.show', $product], 'method' => 'get'] ) }}
-                                    <br>    
+                                    <br>
                                     {{Form::submit('Ver todas las ofertas', ['class' => 'btn btn-primary mb-5' ])}}
                                     {{ Form::close() }}
                                 </div>

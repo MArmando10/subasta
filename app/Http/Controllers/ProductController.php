@@ -208,7 +208,7 @@ class ProductController extends Controller
     }
 
 
-    function searchbeneficiarios(Request $request) {
+    function searchBuscar(Request $request) {
 
         Session::forget('message');    
         $anterior = $request->all();

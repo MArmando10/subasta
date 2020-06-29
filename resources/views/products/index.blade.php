@@ -18,7 +18,7 @@
         <a class="btn btn-secondary mb-5" href="{{route('product.create')}}">Agregar producto </a>
     </div>
 
-    <form action=" " method="POST" role="search">
+    <form action=" " method="POST" role="searchBuscar">
         {{ csrf_field() }}
         <div class="d-flex justify-content-between">
             @if ( !isset($anterior) )
@@ -30,7 +30,7 @@
             <button type="submit" class="btn btn-primary">
                 <i class="fas fa-search"></i> Buscar
             </button>
-            <a href="products.  "><button type="button" class="btn btn-default">
+            <a href=""><button  type="button" class="btn btn-default btn-success">
                     <i class="fas fa-broom"></i> Limpiar filtro
                 </button></a>
         </div>

@@ -27,11 +27,13 @@ class ProductController extends Controller
      */
     public function index(Request $request)
     {
-        $Products = DB::table('products')->Paginate(4);        
+        $Products = DB::table('products')->Paginate(4);
+        $p = $request->p;
+        
         $Users = \App\User::with(['products' => function ($query) {
             $query->orderBy('created_at', 'desc');
         }])->get();
-        return view('products.index',compact('Users','Users','Products'));
+        return view('products.index',compact('Users','Users','Products','p'));
      
     }
 

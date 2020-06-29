@@ -1,15 +1,15 @@
-@extends('layouts.app')
+@extends('layouts.main')
 
 @section('content')
 
 <div class="container">
-   <nav aria-label="breadcrumb">
+   {{-- <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
        <li class="breadcrumb-item"><a href="">Inicio</a></li>
        <li class="breadcrumb-item"><a href="{{route('product.index')}}">Subasta GOI</a></li>
       <li class="breadcrumb-item active" aria-current="page">Creación de subasta</li>
     </ol>
-  </nav>
+  </nav> --}}
 
     <div class="row justify-content-center">
         <div class="col-md-8">

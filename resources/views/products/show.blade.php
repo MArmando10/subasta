@@ -1,29 +1,112 @@
-@extends('layouts.app')
+@extends('layouts.main')
 
 @section('content')
 
 
 <div class="container">
-   
-    <div class="row">
-        <div class="bg-secondary">
-        <div class="col">
-            @foreach ($product->imagenes as $imagen)
-            <img src="{{asset ($imagen->url)}}" alt="adasd.jpg" width="200">
-        @endforeach
+
+    <section>
+
+        <div class="row-3 intro">
+            <div class="col">
+                <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                    <!-- Indicators -->
+                    <ol class="carousel-indicators">
+                        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                        <li data-target="#myCarousel" data-slide-to="1"></li>
+                        <li data-target="#myCarousel" data-slide-to="2"></li>
+                    </ol>
+
+                    <!-- Wrapper for slides -->
+                    <div class="carousel-inner">
+                        <br>
+                        <div class="item active">
+                            <div class="row">
+                                <div class="col-6">
+                                    <br><br>
+                                    @if ($product->imagenes->count() > 1)
+                                    @for ($i = 0; $i < 2; $i++) <img src="{{asset($product->imagenes[$i]->url)}}"
+                                        alt="adasd.jpg" width="200" class="mx-auto d-block img-fluid">
+                                        @endfor
+                                        @endif
+                                        <!-- Left and right controls -->
+                                        <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+                                            <span class="glyphicon glyphicon-chevron-left"></span>
+                                            <span class="sr-only">Previous</span>
+                                        </a>
+                                        <a class="right carousel-control" href="#myCarousel" data-slide="next">
+                                            <span class="glyphicon glyphicon-chevron-right"></span>
+                                            <span class="sr-only">Next</span>
+                                        </a>
+                                </div>
+                                <div class="col text-center">
+                                    <h1 class="card-text text-capitalize">{{$product->titulo}}</h1>
+                                    <p>Vendido por: {{$product->name}}</p>
+                                    <p>{{$product->name}} Mejor oferta al momento</p>
+
+                                    <div class="col-6">
+                                        <div class="bg-secondary text-center bg-secondary-mine">
+                                            <div class="row-6">
+                                                <div class="col-4">
+                                                    <h4 class="text-write text-center">Oferta Actual</h4>
+                                                    {{-- <table width=300 cellspacing=0 cellpadding=0 bgcolor="#333399" border=0> --}}
+                                                </div>
+
+                                                <div class="col bg-secondary text-justify">
+                                                    <input class="test" type="text" name="ofertar" id="">
+                                                    <p type="text" style="">Ofrece $ o más</p>
+                                                    {{Form::submit('Ofertar', ['class' => 'btn btn-primary mb-5'])}}
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row intro">
+                    <div class="col-8 text-center mx-auto d-block">
+                        <br>
+                        <h2>Caracteristicas</h2>
+                        <h2 class="card-text">{{$product->titulo}}</h2>
+                        <p class="card-text">{{$product->categoria}}</p>
+                        <p class="card-text">{{$product->condición}}</p>
+                        <p class="card-text">{{$product->marca}}</p>
+                        <p class="card-text">{{$product->desccripcion}}</p>
+                    </div>
+                    <div class="col">
+                        <div class="table-responsive">
+                            <table class="table table-striped" style="text-align:center">
+                                <tbody class="thead-dark">
+                                    <td>Ultímas Ofertas</td>
+                                    <tr>
+                                        <th scope="col">{{$product->descripcion}}</th>
+                                        <th scope="col">{{$product->precioReserva}}</th>
+                                        <th scope="col">{{$product->fechaInicio}}</th>
+                                        {{-- <p class="card-text ">{{$product->descripcion}}</p>
+                                        <p class="card-text ">{{$product->precioReserva}}</p> --}}
+                                    </tr>
+                                </tbody>
+
+                                <br>
+                                <div class="row-3 intro">
+                                    {{ Form::open(['route' => ['product.show', $product], 'method' => 'get'] ) }}
+                                    <br>    
+                                    {{Form::submit('Ver todas las ofertas', ['class' => 'btn btn-primary mb-5' ])}}
+                                    {{ Form::close() }}
+                                </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
         </div>
-    <div class="col">
-        <h2  class="card-text">{{$product->titulo}}</h2>
-        <p class="card-text">{{$product->marca}}</p>
-        <p class="card-text">{{$product->precioInicial}}</p>
-    </div>
-</div>
-    </div>
-</div>
+    </section>
 
-  {!!Form::model($Product,['route'=>  ['product.show',$product->id],'method'=>'POST','files'=> true])!!}
-  
-  {!!Form::close()!!}
+    {{ $Product->appends('Product')->links() }}
 
-{{ $Product->appends('Product')->links() }}
-@endsection
+    @endsection

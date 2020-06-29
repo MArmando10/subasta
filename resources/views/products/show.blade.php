@@ -2,24 +2,26 @@
 
 @section('content')
 
-<nav aria-label="breadcrumb">
-    <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="">Inicio</a></li>
-        <li class="breadcrumb-item active" aria-current="page">Subasta GOI</li>
-    </ol>
-</nav>
-<div class="container">
-    <div class="col">
-        <h2  class="card-text">{{$producto->titulo}}</h2>
-        <p class="card-text">{{$producto->marca}}</p>
-        <p class="card-text">{{$producto->precioInicial}}</p>
-    </div>
 
+<div class="container">
+   
+    <div class="row">
+        <div class="bg-secondary">
+        <div class="col">
+            @foreach ($product->imagenes as $imagen)
+            <img src="{{asset ($imagen->url)}}" alt="adasd.jpg" width="200">
+        @endforeach
+        </div>
+    <div class="col">
+        <h2  class="card-text">{{$product->titulo}}</h2>
+        <p class="card-text">{{$product->marca}}</p>
+        <p class="card-text">{{$product->precioInicial}}</p>
+    </div>
+</div>
+    </div>
 </div>
 
   {!!Form::model($Product,['route'=>  ['product.show',$product->id],'method'=>'POST','files'=> true])!!}
-  
-  <h1>hola</h1>
   
   {!!Form::close()!!}
 

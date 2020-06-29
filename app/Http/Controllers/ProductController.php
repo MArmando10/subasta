@@ -6,12 +6,15 @@ use DB;
 use Auth;
 //use App\User;
 use Session;
+use App\imagen;
+use App\Product;
 use App\Products;
+use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Cache;
-use Illuminate\Http\Request;
-use App\Product;
-use App\imagen;
+use Illuminate\Pagination\LengthAwarePaginator;
+
+
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\File;
 
@@ -24,15 +27,11 @@ class ProductController extends Controller
      */
     public function index(Request $request)
     {
-    //    $Products = Product::where('titulo',$request->p)->orderBy('created_at','desc')->with('user')->paginate(3);
-    //    $Products = DB::table('products')->ordenBy('desc')->paginate(3);
-        $Products = Product::paginate(5);
-        $p = $request->p;
-        
+        $Products = DB::table('products')->Paginate(4);        
         $Users = \App\User::with(['products' => function ($query) {
             $query->orderBy('created_at', 'desc');
         }])->get();
-        return view('products.index',compact('Users','Users','Products','p'));
+        return view('products.index',compact('Users','Users','Products'));
      
     }
 

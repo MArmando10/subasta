@@ -35,11 +35,11 @@
         </button></a>
     </div>
 </form>
-</div>
 
 
+<br>
 
-
+{{ $Products->appends('Products')->links() }}
 <div class="container">
     @foreach ($Users as $user)
         @foreach ( $user->products as $producto)

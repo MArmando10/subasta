@@ -44,8 +44,11 @@ class ProductController extends Controller
      */
     public function create(Request $request)
     {
+        $venta = new venta;
+
+        $vendedor = vendedor::all();
        
-        return view('products.create');
+        return view('products.create',compact('venta','vendedor'));
     }
 
     /**
@@ -81,7 +84,7 @@ class ProductController extends Controller
         $files = $request->file('images');
 
         $producto = new Product();
-
+          
         $producto->titulo  =request()->input('titulo');
         $producto->categoria =request()->input('categoria');
         $producto->condicion =request()->input('condicion');

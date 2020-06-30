@@ -6,7 +6,13 @@
  <!-- Compiled and minified Bootstrap JavaScript -->
  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
+ --
+ <!-- validador de numeros-->
+ <script src="{{ asset('js/scripts.js') }}" defer></script>
 --
+
+
+ --
  <!-- Carrusel-->
  <link rel="dns-prefetch" href="//fonts.gstatic.com">
  <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">

@@ -4,21 +4,22 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateImagensTable extends Migration
+class CreateVentaTable extends Migration
 {
     /**
      * Run the migrations.
      *
      * @return void
      */
-
     public function up()
     {
-        Schema::create('imagens', function (Blueprint $table) {
+        Schema::create('venta', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre');
-            $table->string('url');
-            $table->foreignId('product_id');
+            $table->foreignId('user_id');
+            $table->foreignId('comprador_id');
+            $table->foreignId('producto_id');
+            $table->integer('oferta_id');
+
             $table->timestamps();
         });
     }
@@ -30,6 +31,6 @@ class CreateImagensTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('imagens');
+        Schema::dropIfExists('venta');
     }
 }

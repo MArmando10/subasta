@@ -39,10 +39,13 @@
                                             <span class="sr-only">Next</span>
                                         </a>
                                 </div>
-                                <p>Tiempo restante: </p>
+                                <div class="col">   
+                                <p class="text-center">Tiempo restante: </p>
+                                <input class="form-control text-center" type="number" id="restante" readonly placeholder="tiempo restante">
                                 <div class="col text-center">
                                     <h1 class="card-text text-capitalize">{{$product->titulo}}</h1>
-                                    <p>Vendido por: {{$product->name}}</p>
+                                    <p>Vendido por: {{$product->user_id}}</p>
+                                    {{-- <p>{{$users->name}}</p> --}}
                                     <p>{{$product->name}} Mejor oferta al momento</p>
 
                                     <div class="col-6">
@@ -54,8 +57,9 @@
                                                 </div>
 
                                                 <div class="col bg-secondary text-justify">
-                                                    <input class="test" type="text" name="ofertar" id="" solonumeros();>
+                                                    <input class="form-control" type="text" min="1" placeholder="Ofertar, solo numeros" pattern="[+]?([0-9]*[.])?[0-9]+" id="ofertar">
                                                     <p type="text" style="">Ofrece $ o más</p>
+                                                    {{ Form::open(['route' => ['product.index', $product], 'method' => 'get'] ) }}
                                                     {{Form::submit('Ofertar', ['class' => 'btn btn-primary mb-5'])}}
                                                 </div>
 
@@ -108,6 +112,21 @@
         </div>
     </section>
 
+    <script>
+    function TiempoRestante(fechaInicio, duracion)
+{
+var fecha1 = new Date(fechaInicio.substring(0,4),fechaInicio.substring(5,7)-1,fechaInicio.substring(8,10));
+var fecha2 = new Date(duracion.substring(0,4),duracion.substring(5,7)-1,duracion.substring(8,10));
+
+document.getElementById('fecha1').value =  fecha1;
+document.getElementById('fecha2').value =  fecha2;
+
+var diasDif = fecha2.getTime() - fecha1.getTime();
+var dias = Math.round(diasDif/(1000 * 60 * 60 * 24));
+
+document.getElementById('diasYhoras').value = dias+1;
+}
+</script>
     {{ $Product->appends('Product')->links() }}
 
     @endsection

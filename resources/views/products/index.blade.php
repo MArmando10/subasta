@@ -39,8 +39,11 @@
 
     <br>
 
+
+
     {{ $Products->appends('Products')->links() }}
-    
+    <body> 
+    <table id="example" class="table table-striped table-bordered" style="width:100%">
     <div class="container">
         @foreach ($Users as $user)
         @foreach ( $user->products as $producto)
@@ -84,5 +87,8 @@
         @endforeach
 
         {{ $Products->appends('Products')->links() }}
+    </table>
+</body>
     </div>
+    
     @endsection

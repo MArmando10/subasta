@@ -39,9 +39,12 @@
                                             <span class="sr-only">Next</span>
                                         </a>
                                 </div>
-                                <div class="col">   
-                                <p class="text-center">Tiempo restante: </p>
-                                <input class="form-control text-center" type="number" id="restante" readonly placeholder="tiempo restante">
+                                <div class="col text-center">   
+                                <label  for="txtrestante">Tiempo restante: </label>
+                                <div id="tiempo_restante">
+                                     
+                                </div>
+                                <br>
                                 <div class="col text-center">
                                     <h1 class="card-text text-capitalize">{{$product->titulo}}</h1>
                                     <p>Vendido por: {{$product->user_id}}</p>
@@ -112,21 +115,7 @@
         </div>
     </section>
 
-    <script>
-    function TiempoRestante(fechaInicio, duracion)
-{
-var fecha1 = new Date(fechaInicio.substring(0,4),fechaInicio.substring(5,7)-1,fechaInicio.substring(8,10));
-var fecha2 = new Date(duracion.substring(0,4),duracion.substring(5,7)-1,duracion.substring(8,10));
 
-document.getElementById('fecha1').value =  fecha1;
-document.getElementById('fecha2').value =  fecha2;
-
-var diasDif = fecha2.getTime() - fecha1.getTime();
-var dias = Math.round(diasDif/(1000 * 60 * 60 * 24));
-
-document.getElementById('diasYhoras').value = dias+1;
-}
-</script>
-    {{ $Product->appends('Product')->links() }}
+{{ $Product->appends('Product')->links() }}
 
     @endsection

@@ -7,8 +7,8 @@
  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
  --
- <!-- validador de numeros-->
- <script src="{{ asset('js/scripts.js') }}" defer></script>
+ <!-- validador de numeros, fecha y hora restante-->
+ <script src="{{ asset('js/script.js') }}"></script>
 --
 
 

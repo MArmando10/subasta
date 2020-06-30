@@ -16,17 +16,20 @@
     }
 
 
-// función validar tiempo restante de la subasta
+//validar tiempo restante de la subasta
 function TiempoRestante(fechaInicio, duracion)
 {
-var fecha1 = new Date(fechaInicio.substring(0,4),fechaInicio.substring(5,7)-1,fechaInicio.substring(8,10));
-var fecha2 = new Date(duracion.substring(0,4),duracion.substring(5,7)-1,duracion.substring(8,10));
+    //obtener fecha actual
+    var elem = document.getElementById('para');
 
-document.getElementById('fecha1').value =  fecha1;
-document.getElementById('fecha2').value =  fecha2;
+    var hoy = new Date();
+    var fecha = hoy.getDate() + '-' + ( hoy.getMonth() + 1 ) + '-' + hoy.getFullYear();
 
-var diasDif = fecha2.getTime() - fecha1.getTime();
-var dias = Math.round(diasDif/(1000 * 60 * 60 * 24));
+    //hora actual
+    var hora = hoy.getUTCHours()+':' + hoy.getUTCMinutes()+'-' + hoy.getSeconds();
+    //obtener fecha y hora actual
+    var fechaYHora = fecha + ' ' + hora;
 
-document.getElementById('diasYhoras').value = dias+1;
+    var elem = document.getElementById('tiempo_restante');
+    elem.innerText = "Hola mundo"
 }

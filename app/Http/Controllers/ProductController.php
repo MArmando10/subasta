@@ -28,7 +28,7 @@ class ProductController extends Controller
     public function index(Request $request)
     {
         $Products = DB::table('products')->Paginate(4);
-        $p = $request->p;
+        // $p = $request->p;
         
         $Users = \App\User::with(['products' => function ($query) {
             $query->orderBy('created_at', 'desc');
@@ -44,11 +44,9 @@ class ProductController extends Controller
      */
     public function create(Request $request)
     {
-        $venta = new venta;
-
-        $vendedor = vendedor::all();
+     
        
-        return view('products.create',compact('venta','vendedor'));
+        return view('products.create');
     }
 
     /**
@@ -183,7 +181,7 @@ class ProductController extends Controller
     public function edit(Product $product)
     {
         //
-        dd($product);
+        // dd($product);
     }
 
     /**
@@ -196,7 +194,7 @@ class ProductController extends Controller
     public function update(Request $request, Product $product)
     {
         //
-        dd($request);
+        // dd($request);
     }
 
     /**
@@ -243,4 +241,5 @@ class ProductController extends Controller
              }
           return redirect()->route('products.productsView');
         }
+        
 }

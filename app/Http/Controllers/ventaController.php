@@ -2,19 +2,24 @@
 
 namespace App\Http\Controllers;
 
+use DB;
 use App\venta;
 use Illuminate\Http\Request;
 
-class ventaController extends Controller
+class VentaController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+       
+        $venta = DB::table('venta')->Paginate(10);
+        // dd($venta);
+        $p = $request->p;
+        return view('Ofertas.index',compact('venta','p'));
     }
 
     /**
@@ -41,10 +46,10 @@ class ventaController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\venta  $venta
+     * @param  \App\Venta  $venta
      * @return \Illuminate\Http\Response
      */
-    public function show(venta $venta)
+    public function show(Venta $venta)
     {
         //
     }
@@ -52,10 +57,10 @@ class ventaController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\venta  $venta
+     * @param  \App\Venta  $venta
      * @return \Illuminate\Http\Response
      */
-    public function edit(venta $venta)
+    public function edit(Venta $venta)
     {
         //
     }
@@ -64,10 +69,10 @@ class ventaController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\venta  $venta
+     * @param  \App\Venta  $venta
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, venta $venta)
+    public function update(Request $request, Venta $venta)
     {
         //
     }
@@ -75,10 +80,10 @@ class ventaController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\venta  $venta
+     * @param  \App\Venta  $venta
      * @return \Illuminate\Http\Response
      */
-    public function destroy(venta $venta)
+    public function destroy(Venta $venta)
     {
         //
     }

@@ -1,10 +1,12 @@
 <?php
 
 namespace App;
-
+use\Product;
 use Illuminate\Database\Eloquent\Model;
 
-class venta extends Model
+class Venta extends Model
 {
-    //
+    public function products() {
+        return $this->hasMany('App\Product');
+    }
 }

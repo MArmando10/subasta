@@ -7,6 +7,7 @@ use Auth;
 //use App\User;
 use Session;
 use App\imagen;
+use Carbon\carbon;
 use App\Product;
 use App\Products;
 use Illuminate\Http\Request;
@@ -90,6 +91,7 @@ class ProductController extends Controller
         $producto->descripcion =request()->input('descripcion');
         $producto->duracion =request()->input('duracion');
         $producto->fechaInicio =request()->input('fechaInicio');
+        $producto->fechaFinal =request()->input('fechaFinal');
         $producto->precioInicial =request()->input('precioInicial');
         $producto->precioReserva =request()->input('precioReserva');
         $producto->cantidad =request()->input('cantidad');
@@ -169,7 +171,10 @@ class ProductController extends Controller
             $Product = product::where('titulo',$product)->paginate(6);//mandamos llamar la variable product, y le indicamos los renglones del formulario
             // $Products = Products::find($products);
             // dd($product);
-            return view('products.show',compact('Product','product'));
+            $now = now();
+            $ldate = date('Y-m-d H:i:s');
+            // echo $mytime->toDateTimeString();
+            return view('products.show',compact('Product','product','now'));
     }
 
     /**
@@ -241,5 +246,13 @@ class ProductController extends Controller
              }
           return redirect()->route('products.productsView');
         }
+
+
+
+        public function getLicenseExpireAttribute($tiempo)
+        {
+            return Carbon::parse($tiempo);
+        }
+
         
 }

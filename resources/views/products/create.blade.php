@@ -92,6 +92,13 @@
                       {{ Form::datetimeLocal('fechaInicio', \Carbon\Carbon::now(), ['id' => 'fechaInicio', 'class' => 'form-control']) }}
                     </div>
                   </div>
+                 <!-- fecha y hora final -->
+                  <div class="form-group row">
+                    {{ Form::label('final', null, ['class' => 'col-sm-2 col-form-label']) }}
+                    <div class="col-10">
+                      {{ Form::datetimeLocal('fechaFinal', \Carbon\Carbon::now(), ['id' => 'fechaFinal', 'class' => 'form-control']) }}
+                    </div>
+                  </div>
 
                   <!-- Precio inicial -->
                   <div class="form-group row">

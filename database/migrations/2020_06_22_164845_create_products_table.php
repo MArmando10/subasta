@@ -23,6 +23,7 @@ class CreateProductsTable extends Migration
             $table->string('descripcion');
             $table->integer('duracion');
             $table->datetime('fechaInicio');
+            $table->datetime('fechaFinal');
             $table->float('precioInicial');
             $table->float('precioReserva');
             $table->integer('cantidad');

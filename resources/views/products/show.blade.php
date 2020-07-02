@@ -19,8 +19,9 @@
 
        
             <div class="col-4    text-center">
-                <label for="txtrestante">Tiempo restante: </label>
-                <h2 id="reloj"></h2>
+                {{-- <h2 id="reloj"></h2> --}}
+                <h2> FEcha de expiración:</h2>
+                <h4 class="card-text">{{$product->fechaFinal}}</h4>
                 <br>
                 <div class="col">
                     <h1 class="card-text text-capitalize">{{$product->titulo}}</h1>
@@ -103,7 +104,6 @@
     }
 
     elemento = document.getElementById('reloj');
-
     
     async function setTime(){
         while (true) {
@@ -120,8 +120,6 @@
     console.log("entra");
 
 </script>
-
-
 
 {{ $Product->appends('Product')->links() }}
 @endsection

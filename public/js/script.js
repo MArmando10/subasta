@@ -3,8 +3,4 @@ $( "#dataTable imagens" ).on( "click", "imagenes", function() {
   });
 
 
-
-
-
-
   

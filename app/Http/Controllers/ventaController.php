@@ -40,8 +40,12 @@ class VentaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        dd($request->venta);
+        // $venta = venta::where('oferta_id',$venta)->paginate(6);//mandamos llamar la variable product, y le indicamos los renglones del formulario
+
+        return redirect()->route('products.index');
     }
+    
 
     /**
      * Display the specified resource.

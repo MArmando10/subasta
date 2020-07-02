@@ -173,8 +173,7 @@ class ProductController extends Controller
             // dd($product);
             $now = now();
             $ldate = date('Y-m-d H:i:s');
-            // echo $mytime->toDateTimeString();
-            return view('products.show',compact('Product','product','now'));
+            return view('products.show',compact('Products','product','now'));
     }
 
     /**

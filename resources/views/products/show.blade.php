@@ -27,7 +27,13 @@
                     <h1 class="card-text text-capitalize">{{$product->titulo}}</h1>
                     <p>Vendido por: {{$product->user_id}}</p>
                     {{-- <p>{{$users->name}}</p> --}}
-                    <p>{{$product->name}} Mejor oferta al momento</p>
+                    @foreach ( $ofertas as $ofer)
+                        @if ($oferta->ganador = true)
+                            {{ $ofertaG = $ofer}}
+                        @endif
+                    
+                    @endforeach
+                    <p>{{$product->oferta_id}} Mejor oferta al momento</p>
 
                     <div class="col col-slg-4 text-center">
                         <div class="bg-secondary text-center bg-secondary-mine">
@@ -37,15 +43,18 @@
                                     <h4 class=" text-center">Oferta Actual</h4>
                                     {{-- <table width=300 cellspacing=0 cellpadding=0 bgcolor="#333399" border=0> --}}
                                 </div>
+                                {{ Form::open(['route' => ['venta.store', $product], 'method' => 'post'] ) }}
+                                    
 
-                                <div class="col text-center bg-secondary text-justify">
-                                    <input class="form-control" type="text" min="1" placeholder="Ofertar, solo numeros"
-                                        pattern="[+]?([0-9]*[.])?[0-9]+" id="ofertar">
-                                    <p type="text" style="">Ofrecer $ o más</p>
-                                    {{ Form::open(['route' => ['product.index', $product], 'method' => 'get'] ) }}
-                                    {{Form::submit('Ofertar', ['class' => 'btn btn-primary mb-5'])}}
-                                    {{Form::close()}}
-                                </div>
+                                    <div class="col text-center bg-secondary text-justify">
+                                        <input class="form-control" type="text" min="1" placeholder="Ofertar, solo numeros"
+                                            pattern="[+]?([0-9]*[.])?[0-9]+" id="ofertar">
+                                        <p type="text" style="">Ofrecer $ o más</p>
+                                        
+                                        {{Form::submit('Ofertar', ['class' => 'btn btn-primary mb-5'])}}
+                                        
+                                    </div>
+                                {{Form::close()}}
 
                             </div>
                         </div>
@@ -120,6 +129,7 @@
     console.log("entra");
 
 </script>
+
 
 {{ $Product->appends('Product')->links() }}
 @endsection

@@ -11,15 +11,15 @@ class CreateVentaTable extends Migration
      *
      * @return void
      */
+    
     public function up()
     {
         Schema::create('venta', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id');
+            $table->foreignId('vendedor_id');
             $table->foreignId('comprador_id');
             $table->foreignId('producto_id');
-            $table->integer('oferta_id');
-
+            $table->integer('oferta_id');       
             $table->timestamps();
         });
     }

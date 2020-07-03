@@ -16,7 +16,8 @@
             
             <div class="card">
             
-                <div class="card-header">Subastar un producto</div>
+              <div class="card-header">Subastar un producto {{ $now = \Carbon\Carbon::now() }}</div>
+                {{ $now->addDay(2) }}
             
                 <div class="card-body">
 
@@ -89,7 +90,7 @@
                   <div class="form-group row">
                     {{ Form::label('Inicio', null, ['class' => 'col-sm-2 col-form-label']) }}
                     <div class="col-10">
-                      {{ Form::datetimeLocal('fechaInicio', \Carbon\Carbon::now(), ['id' => 'fechaInicio', 'class' => 'form-control']) }}
+                      {{ Form::datetimeLocal('fechaInicio', \Carbon\Carbon::now(), ['id' => 'fechaInicio',  'class' => 'form-control']) }}
                     </div>
                   </div>
                  <!-- fecha y hora final -->
@@ -212,10 +213,6 @@
               </div>
             </div>
           </div>
-        </div>
-
-
-
-            
-</div>
+        </div>            
+  </div>
 @endsection

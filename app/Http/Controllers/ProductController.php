@@ -7,7 +7,7 @@ use Auth;
 //use App\User;
 use Session;
 use App\imagen;
-use Carbon\carbon;
+use Carbon\Carbon;
 use App\Product;
 use App\Products;
 use Illuminate\Http\Request;
@@ -33,7 +33,8 @@ class ProductController extends Controller
         
         $Users = \App\User::with(['products' => function ($query) {
             $query->orderBy('created_at', 'desc');
-        }])->get();
+            }])->get();
+        // dd($Users);
         return view('products.index',compact('Users','Users','Products','p'));
      
     }
@@ -82,6 +83,7 @@ class ProductController extends Controller
         //dd($request);
         $files = $request->file('images');
 
+        
         $producto = new Product();
           
         $producto->titulo  =request()->input('titulo');
@@ -104,8 +106,6 @@ class ProductController extends Controller
         $producto->user_id = Auth::user()->id;
 
         $producto->save();
-        
-        
 
         //return $files[0];
         //return $files[0]->getClientOriginalName();
@@ -168,12 +168,12 @@ class ProductController extends Controller
      */
     public function show(Product $product )
     {
-            $Product = product::where('titulo',$product)->paginate(6);//mandamos llamar la variable product, y le indicamos los renglones del formulario
-            // $Products = Products::find($products);
-            // dd($product);
-            $now = now();
-            $ldate = date('Y-m-d H:i:s');
-            return view('products.show',compact('Products','product','now'));
+            $Products = DB::table('venta')->Paginate(4);
+            $v = $product->v;
+            // $now = now();
+            // $date = date('Y-m-d H:i:s');
+
+            return view('products.show',compact('Products','product','now','v'));
     }
 
     /**

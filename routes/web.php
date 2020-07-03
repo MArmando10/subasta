@@ -24,3 +24,5 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('/product', 'ProductController');
 
 Route::resource('/venta', 'VentaController');
+
+Route::resource('/oferta', 'ofertaController');

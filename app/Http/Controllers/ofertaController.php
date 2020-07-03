@@ -2,24 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use DB;
-use App\Venta;
+use App\Oferta;
 use Illuminate\Http\Request;
 
-class VentaController extends Controller
+class ofertaController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index(request $request)
     {
-        
-        $venta = DB::table('venta')->Paginate(5);
-        $oferta = $venta->oferta;
-
-        return view('products.index',compact('oferta'));
+        //
     }
 
     /**
@@ -27,7 +22,7 @@ class VentaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(request $request)
     {
         //
     }
@@ -39,31 +34,43 @@ class VentaController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-     { 
-        //  $venta = new Venta();
-        //  $venta->ve
+    {
+        dd($request);
+        $request->validate([
+            'oferta'=>'required',
+            ]);
+         
+            //$files = $request->file('ofertas');
+
+        $oferta = new oferta();
+
+        $oferta->user_id  =request()->input('user_id');
+        $oferta->product_id =request()->input('product_id');
+        $oferta->oferta =request()->input('oferta');
+      
+        $oferta->save();
+        dd($request);
         return redirect()->route('product.index');
     }
-    
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Venta  $venta
+     * @param  \App\Oferta  $oferta
      * @return \Illuminate\Http\Response
      */
-    public function show(Venta $venta)
+    public function show(Oferta $oferta)
     {
-
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Venta  $venta
+     * @param  \App\Oferta  $oferta
      * @return \Illuminate\Http\Response
      */
-    public function edit(Venta $venta)
+    public function edit(Oferta $oferta)
     {
         //
     }
@@ -72,10 +79,10 @@ class VentaController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Venta  $venta
+     * @param  \App\Oferta  $oferta
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Venta $venta)
+    public function update(Request $request, Oferta $oferta)
     {
         //
     }
@@ -83,10 +90,10 @@ class VentaController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Venta  $venta
+     * @param  \App\Oferta  $oferta
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Venta $venta)
+    public function destroy(Oferta $oferta)
     {
         //
     }

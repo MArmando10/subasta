@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use DB;
 use Auth;
-//use App\User;
+use App\Users;
 use Session;
 use App\imagen;
 use Carbon\Carbon;
@@ -29,13 +29,14 @@ class ProductController extends Controller
     public function index(Request $request)
     {
         $Products = DB::table('products')->Paginate(4);
-        // $p = $request->p;
+        $p = $request->p;
+        $i = $imagen->i;
         
         $Users = \App\User::with(['products' => function ($query) {
             $query->orderBy('created_at', 'desc');
             }])->get();
         // dd($Users);
-        return view('products.index',compact('Users','Users','Products','p'));
+        return view('products.index',compact('Users','Users','Products','p','i'));
      
     }
 
@@ -169,8 +170,11 @@ class ProductController extends Controller
     public function show(Product $product )
     {
             $Products = DB::table('venta')->Paginate(4);
+            // $ofertas = $product->ofertas;
+            // $users = $product->users;
+          
             $v = $product->v;
-            // $now = now();
+            $now = now();
             // $date = date('Y-m-d H:i:s');
 
             return view('products.show',compact('Products','product','now','v'));

@@ -6,23 +6,35 @@
 
     <section>
         <div class="row">
-            <div class="col-6 text-center" style="transform: translateY(20%);">
+            {{-- <div class="col-6 text-center" style="transform: translateY(20%);">
                 @if ($product->imagenes->count() >= 0)
-                @for ($i = 0; $i < 1; $i++) <img class="col-12 col-sm-6" src="{{asset($product->imagenes[$i]->url)}}" alt="adasd.jpg"
+                @for ($i = 0; $i < 1; $i++)
+                 <img class="col-12 col-sm-6" src="{{asset($product->imagenes[$i]->url)}}" alt="adasd.jpg"
                     width="200" clas s="mx-auto d-block img-fluid" style="height: auto; width:200px; transform: translateX(-20%)">
                     @endfor
                     @foreach ($product->imagenes as $imagen)
                 <img src="{{asset ($imagen->url)}}" alt="adasd.jpg" width="70" style="height: auto; transform: translateX(-20%)" >
                 @endforeach 
                     @endif
+            </div> --}}
+            <div class="col-3 text-center" style="transform: translateY(20%);">
+            hol  @foreach($imagenes as $imagen)
+
+            <div class="item"><img src="{{asset($product->imagenes[$i]->url)}}" alt="slider-image" class="img-responsive">
             </div>
 
-       
+            @endforeach
+        </div>
+                <div class="col-5" style="transform: translateY(20%);">
+                    hello
+            
+            </div>
+            
             <div class="col-4    text-center">
                 {{-- <h2 id="reloj"></h2> --}}
                 <h2> Fecha de expiración:</h2>
                 {{-- @foreach($fechaFinal == false) --}}
-                <h4 class="card-text" id="calc"> {{ $product -> fechaFinal}} </h4>
+                <h4 class="card-text" id="calc"> {{ $product->fechaFinal}} </h4>
                 <br>
                 <div class="col">
                     <h1 class="card-text text-capitalize">{{$product->titulo}}</h1>
@@ -33,7 +45,7 @@
                             {{ $ofer -> user()}}
                         @endif
                     @endforeach --}}
-                    <p>{{$product->oferta_id}} Mejor oferta al momento</p>
+                    <p> Mejor oferta al momento</p>
 
                     <div class="col col-slg-4 text-center">
                         <div class="bg-secondary text-center bg-secondary-mine">
@@ -46,9 +58,10 @@
                                 {{ Form::open(['route' => ['oferta.store', $product], 'method' => 'post'] ) }}
                             
                                     <div class="col text-center bg-secondary text-justify">
-                                        <input name="oferta" class="form-control text-center" type="text" min="1" placeholder="Ofertar, solo numeros"
-                                            pattern="[+]?([0-9]*[.])?[0-9]+" id="ofertar">
-                                        <p type="text" style="">Ofrecer $ o más</p>
+                                        <input type="hidden" name="product_id" value="{{$product->id }}">
+                                        <input name="oferta" class="form-control text-center" type="text" min="1" placeholder="Ofertar"
+                                            pattern="[+]?([0-9]*[.])?[0-9]+" id="oferta">
+                                            <p type="text" style="">Ofrecer $ o más</p>
                                         
                                         {{Form::submit('Ofertar', ['class' => 'btn btn-primary mb-5'])}}
                                         
@@ -76,24 +89,39 @@
         <p class="card-text">Marca: {{$product->marca}}</p>
         <p class="card-text">Descripcion: {{$product->descripcion}}</p>
     </div>
-    <div class="col-4 cols-sm-3 text-center mx-auto d-block">
-        <div class="table-responsive text-center">
+    
+     
+    <div class="col-6 cols-sm-3 text-center mx-auto d-block">
+        
+        <div class="table-responsive  text-center">
+            
             <table class="table table-striped" style="text-align:center">
-                <tbody class="thead-dark">
-                    <td>Ultímas Ofertas</td>
+                <thead>
                     <tr>
-                        <th scope="col">{{$product->descripcion}}</th>
-                        <th scope="col">{{$product->precioReserva}}</th>
-                        <th scope="col">{{$product->fechaInicio}}</th>
+                        <th>Descripción</th>
+                        <th>Precio Reserva</th>
+                        <th>Fecha Inicio</th>
                     </tr>
+                </thead>
+                <tbody class="thead-dark">
+                    <tr> 
+                        <td scope="col">{{$product->descripcion}}</td>
+                        <td scope="col">{{$product->precioReserva}}</td>
+                        <td scope="col">{{$product->fechaInicio}}</td>
+                    </div>
                 </tbody>
 
                 <br>
-                <div class="row-3 intro">
-                    <br>
+                <div class="row-3">
+                    <div class="col-sm-3"><br>
+                    <h2 class="elemento strong">Ultimas Ofertas</h2>
+                    </div>
+                    <div class="col float-right">
+                    <br>  
                     {{ Form::open(['route' => ['venta.index', $product], 'method' => 'get'] ) }}
                     {{Form::submit('Ver todas las ofertas', ['class' => 'btn btn-primary mb-5'])}}
                     {{Form::close()}}
+                </div>
                 </div>
         </div>
 
@@ -126,5 +154,5 @@
     console.log("entra");
 </script>
 
-
+{{ $Products->links() }}
 @endsection

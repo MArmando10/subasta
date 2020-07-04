@@ -30,7 +30,7 @@
             <button type="submit" class="btn btn-primary">
                 <i class="fas fa-search"></i> Buscar
             </button>
-            <a href=""><button  type="button" class="btn btn-default btn-success">
+            <a href=""><button type="button" class="btn btn-default btn-success">
                     <i class="fas fa-broom"></i> Limpiar filtro
                 </button></a>
         </div>
@@ -39,28 +39,29 @@
 
     <br>
 
-    <body> 
-    <table id="example" class="table table-striped table-bordered" style="width:100%">
-    <div class="container">
-        @foreach ($Users as $user)
-            @foreach ( $user->products as $product)
+    <body>
+        {{ $Products->links() }}
+        <table id="example" class="table table-striped table-bordered" style="width:100%">
+            <div class="container">
+                @foreach ($Users as $user)
+                @foreach ( $user->products as $product)
                 <div class="row intro">
                     <div class="col">
-                        
-                        {{-- {{ $products->imagenes->count() }}  --}}
-                        @if ($product->imagenes->count() > 0)
-                            @for ($i = 0; $i < 1; $i++)
-                                <img src="{{asset($product->imagenes[$i]->url)}}" alt="adasd.jpg" width="200">
-                            @endfor
-                        @endif                
 
-                        {{--
+                        {{-- {{ $products->imagenes->count() }} --}}
+                        @if ($product->imagenes->count() > 0)
+                        @for ($i = 0; $i < 1; $i++) <img src="{{asset($product->imagenes[$i]->url)}}" alt="adasd.jpg"
+                            width="200">
+                            @endfor
+                            @endif
+
+                            {{--
 
                         
                         @foreach ($products->imagenes as $imagen)
                         <img src="{{asset ($imagen->url)}}" alt="adasd.jpg" width="200">
-                        @endforeach
-                        --}}
+                            @endforeach
+                            --}}
 
                     </div>
                     <div class="col">
@@ -74,29 +75,18 @@
                             <p class="card-text">{{$product->precioReserva}}</p>
                             {{ Form::open(['route' => ['product.show', $product], 'method' => 'get'] ) }}
                             {{Form::submit('Más Detalles', ['class' => 'btn btn-secondary mb-5'])}}
-                            
+
                             {{ Form::close() }}
                         </div>
                     </div>
 
                 </div>
                 <br>
-            @endforeach
-        @endforeach
+                @endforeach
+                @endforeach
 
-        {{-- {{ $product->appends('product')->links() }} --}}
-    </table>
-</body>
-    </div>
-
-{{-- 
-
-
-    <div class="cont">
-        <div class="slider"></div>
-        <ul class="nav"></div>
-        <div data-target='right' class="side-nav side-nav--right"></div>
-        <div data-target='left' class="side-nav side-nav--left"></div>
-    </div> --}}
-    
-    @endsection
+                {{ $Products->links() }}
+        </table>
+    </body>
+</div>
+@endsection

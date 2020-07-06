@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use DB;
 use App\Oferta;
+use App\Product;
 use Auth;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
@@ -21,11 +22,10 @@ class ofertaController extends Controller
         //$ofertas = DB::table('ofertas')->Paginate(4);
         //$p = $request->p;
         //$i = $imagen->i;
-        $ofertas = Oferta::all();
+        $productos = Product::all();
         //$ofertas = Auth::user()->ofertas();
         
-        
-        dd($ofertas[0]->user());
+        dd($productos[0]->user());
 
         return view('ofertas.index',compact('ofertas'));
     }

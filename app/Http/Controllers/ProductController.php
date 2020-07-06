@@ -4,12 +4,10 @@ namespace App\Http\Controllers;
 
 use DB;
 use Auth;
-use App\Users;
 use Session;
 use App\imagen;
 use Carbon\Carbon;
 use App\Product;
-use App\Products;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Cache;

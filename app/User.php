@@ -6,6 +6,8 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use App\Product;
+use App\Oferta;
+
 class User extends Authenticatable
 {
     use Notifiable;
@@ -47,6 +49,10 @@ class User extends Authenticatable
 
     public function products(){
         return $this->hasMany(Product::class);
+    }
+
+    public function ofertas(){
+        return $this->hasMany(Oferta::class);
     }
     
 }

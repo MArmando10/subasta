@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use DB;
 use App\Oferta;
+use Auth;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 
@@ -16,7 +17,17 @@ class ofertaController extends Controller
      */
     public function index(request $request)
     {
-        // return view('products.index');
+       
+        //$ofertas = DB::table('ofertas')->Paginate(4);
+        //$p = $request->p;
+        //$i = $imagen->i;
+        $ofertas = Oferta::all();
+        //$ofertas = Auth::user()->ofertas();
+        
+        
+        dd($ofertas[0]->user());
+
+        return view('ofertas.index',compact('ofertas'));
     }
 
     /**
@@ -48,7 +59,7 @@ class ofertaController extends Controller
             $oferta->oferta = request()->input('oferta');
             // $oferta = Input::get('oferta', 'default oferta');
             $oferta -> save();
-        return redirect()->route('product.index')->with('status', 'Oferta recibida');
+        return redirect()->route('product.index');
     }
 
     /**

@@ -46,7 +46,7 @@ $index=0;
         <div class="col" style="width: 100%; align-self: center; height: auto;">
             <div class="row">
                 <div class="col">
-                    <h1 class="font-weight-bold">{{$product->titulo}}</h1>  
+                    <h1 class="font-weight-bold">{{$product->titulo}}</h1>
                     <h2 style="text-align:right"> Fecha de expiración:</h2>
                     <h4 class="card-text" style="text-align:right" id="calc"> {{ $product->fechaFinal}} </h4>
                 </div>
@@ -74,45 +74,23 @@ $index=0;
             </div>
             <div class="row bg-secondary ofertar-style">
                 <div class="col">
-                    <form class="form-group" action="">
-                        <div class="form-group row">
-                            <div class="col">
-                                <h4 class="font-wight-bold">Oferta actual 350 GOI</h4>
-                            </div>
+                    {{ Form::open(['route' => ['oferta.store', $product], 'method' => 'post']) }}
+                    <div class="form-group row">
+                        <div class="col">
+                            <h4 class="font-wight-bold">Oferta actual 350 GOI</h4>
                         </div>
-                        <div class="form-group row">
-                            <div class="col">
-                                <div class="row">
-                                   
-                                    </div>
-                                  
-                                        {{Form::submit('Ofertar', ['class' => 'btn btn-primary mb-5'])}}
-
-                                        {{Form::close()}}
-                                    </div>
-
-
-
-                                    <div class="col">
-                                <h4 class=" text-center">Oferta Actual</h4>
-                                {{-- <table width=300 cellspacing=0 cellpadding=0 bgcolor="#333399" border=0> --}}
-                            </div>
-                            {{ Form::open(['route' => ['oferta.store', $product], 'method' => 'post'] ) }}
-
-                            <div class="col text-center bg-secondary text-justify">
-                                <input type="hidden" name="product_id" value="{{$product->id }}">
-                                <input name="oferta" class="form-control text-center" type="text" min="1"
-                                    placeholder="Ofertar" pattern="[+]?([0-9]*[.])?[0-9]+" id="oferta">
-                                <p type="text" style="">Ofrecer $ o más</p>
-
-                                {{Form::submit('Ofertar', ['class' => 'btn btn-primary mb-5'])}}
-
-                                        {{Form::close()}}
-                                </div>
-                                
-                            </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col">
+                            <input type="hidden" name="product_id" value="{{$product->id}}">
+                            <input type="text" name="oferta" class="form-control  text-center" min="0"
+                                placeholder="ofertar" pattern="[+]?([0-9]*[.])?[0-9]+" id="oferta">
+                            <p class="font-wight-bold">Ofrece 351 o más</p>
                         </div>
-                    </form>
+                        {{Form::submit('ofertar', ['class' => 'btn btn-primary mb-5'])}}
+                    </div>
+
+                    {{Form::close()}}
                 </div>
             </div>
         </div>
@@ -155,9 +133,20 @@ $index=0;
             </div>
             <div class="col float-right">
                 <br>
-                {{ Form::open(['route' => ['venta.index', $product], 'method' => 'get'] ) }}
-                {{Form::submit('Ver todas las ofertas', ['class' => 'btn btn-primary mb-5'])}}
+                {{ Form::open(['route' => ['oferta.index', $product], 'method' => 'get']) }}
+                <div class="form-group row-12">
+                </div>
+                    <div class="col">
+                    </div>
+                    {{Form::submit('Ver todas las ofertas', ['class' => 'btn btn-primary mb-5'])}}
+                </div>
+
                 {{Form::close()}}
+                {{-- {{ Form::open(['route' => ['venta.index', $product], 'method' => 'get'] ) }}
+                <div class="form-group row-12">
+                    {{Form::submit('Ver todas las ofertas', ['class' => 'btn btn-primary mb-5'])}}
+                    {{Form::close()}}
+                </div> --}}
             </div>
             </table>
             <br>

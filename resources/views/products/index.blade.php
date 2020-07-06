@@ -3,15 +3,6 @@
 
 @section('breadcrumbs')
 
-{{-- 
-<nav aria-label="breadcrumb">
-    <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="">Inicio</a></li>
-        <li class="breadcrumb-item active" aria-current="page">Subasta GOI</li>
-    </ol>
-</nav>
-@endsection --}}
-
 @section('content')
 <div class="container">
     <div>
@@ -38,9 +29,9 @@
 
 
     <br>
-
+    {{ $Products->links() }}
     <body>
-        {{ $Products->links() }}
+        <div class="table-responsive">
         <table id="example" class="table table-striped table-bordered" style="width:100%">
             <div class="container">
                 @foreach ($Users as $user)

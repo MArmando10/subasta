@@ -60,6 +60,7 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
+        // dd($request);
         $request->validate([
             'titulo' => 'required',
             'categoria'=>'required',
@@ -135,9 +136,9 @@ class ProductController extends Controller
 
             // ]);
             foreach ($files as $file) {
-
-                $archivo = Storage::putFile('imagenes', $file);
-
+                //dd($file);
+                $archivo = Storage::putFile('storage', new File($file));
+                //dd($file);
                 $imagen = new imagen();
                 $imagen->nombre = $file->getClientOriginalName();
                 $imagen->url = $archivo;
@@ -169,14 +170,14 @@ class ProductController extends Controller
      */
     public function show(Product $product )
     {
+        // dd($product);
             $Products = DB::table('venta')->Paginate(4);
-            // $ofertas = $product->ofertas;
+            //  $ofertas = $product->ofertas;
             // $users = $product->users;
-          
             $v = $product->v;
             $now = now();
             // $date = date('Y-m-d H:i:s');
-
+        // dd($product);
             return view('products.show',compact('Products','product','now','v'));
     }
 

@@ -37,30 +37,18 @@ class ofertaController extends Controller
      */
     public function store(Request $request)
     {
-       
-        $request->validate([
-
-            'oferta' => 'required',
-            // 'user_id'=>'required',
-            // 'product_id'=>'required',
-
-            ]);
-
-        $oferta = new Oferta();
-        
-        $oferta->user_id = \Auth::user()->id;
-        //$oferta->product_id = \Auth::user();
-
-        $oferta->product_id =request()->input('product_id');
-        
-        $oferta->oferta = request()->input('oferta');
         // dd($request->oferta);
-        // $oferta = Input::get('oferta', 'default oferta');
-        $oferta->save();
-        // dd($request);
-        // $oferta -> save();
-      
-        return redirect()->route('product.index');
+        $request->validate([
+            'oferta' => 'required',
+        ]);
+            $oferta = new Oferta();
+            $oferta->user_id = \Auth::user()->id;
+            //$oferta->product_id = \Auth::user();
+            $oferta->product_id =request()->input('product_id');
+            $oferta->oferta = request()->input('oferta');
+            // $oferta = Input::get('oferta', 'default oferta');
+            $oferta -> save();
+        return redirect()->route('product.index')->with('status', 'Oferta recibida');
     }
 
     /**

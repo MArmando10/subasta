@@ -26,6 +26,7 @@
                 @if ($product->imagenes->count() > 0)
                 <div class="col-1" style="flex-flow: wrap; z-index: 100">
                     @foreach ($product->imagenes as $imagen)
+<<<<<<< Updated upstream
                     <div style="margin: 2px; border-color: blue; border-left-style: solid;">
                         <img src="{{asset($imagen->url)}}" alt="adasd.jpg" style="height: auto; width: 100px;" onclick="imageSelected(@php echo $index; @endphp, '{{asset($imagen->url)}}')">
                     </div>
@@ -39,6 +40,20 @@
                 </div>
                 @endif
             </div>
+=======
+                <img src="{{asset ($imagen->url)}}" alt="adasd.jpg" width="70" style="height: auto; transform: translateX(-20%)" >
+                @endforeach 
+                    @endif
+            </div> --}}
+            <div class="col-3 text-center" style="transform: translateY(20%);">
+            hol  
+            {{-- @foreach($imagenes as $imagen) --}}
+
+            {{-- <div class="item"><img src="{{asset($product->imagenes[$i]->url)}}" alt="slider-image" class="img-responsive">
+            </div> --}}
+
+            {{-- @endforeach --}}
+>>>>>>> Stashed changes
         </div>
         <div class="col" style="width: 100%; align-self: center; height: auto;">
             <div class="row">

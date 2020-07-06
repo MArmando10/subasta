@@ -26,15 +26,21 @@ class ProductController extends Controller
      */
     public function index(Request $request)
     {
+        
         $Products = DB::table('products')->Paginate(4);
         //$p = $request->p;
         //$i = $imagen->i;
-        
+        /*
         $Users = \App\User::with(['products' => function ($query) {
             $query->orderBy('created_at', 'desc');
             }])->get();
         // dd($Users);
-        return view('products.index',compact('Users','Users','Products'));
+        */
+
+        $Users = \App\User::all();
+        dd($Users[0]->products[0]->ofertas[0]->product);
+        //dd($users[0]->products[0]->ofertas);
+        return view('products.index',compact('Users'));
      
     }
 

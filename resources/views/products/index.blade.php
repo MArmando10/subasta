@@ -4,10 +4,14 @@
 @section('breadcrumbs')
 
 @section('content')
+
 <div class="container">
+    <form action="" class="d-flex">
     <div>
         <a class="btn btn-secondary mb-5" href="{{route('product.create')}}">Agregar products </a>
+        
     </div>
+</form>
 
     <form action=" " method="POST" role="searchBuscar">
         {{ csrf_field() }}
@@ -45,14 +49,7 @@
                                 @endfor
                             @endif
 
-                                {{--
-
                             
-                            @foreach ($products->imagenes as $imagen)
-                            <img src="{{asset ($imagen->url)}}" alt="adasd.jpg" width="200">
-                                @endforeach
-                                --}}
-
                         </div>
                         <div class="col">
                             <h2 class="card-text">{{$product->titulo}}</h2>

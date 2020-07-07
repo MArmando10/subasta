@@ -29,11 +29,11 @@ class Product extends Model
         return $this->hasMany(Oferta::class);
     }
 
-
-    
     public function venta() {
         return $this->hasOne(Product::class);
     }
+
+    
 
     //se requiere belongsTo
 }

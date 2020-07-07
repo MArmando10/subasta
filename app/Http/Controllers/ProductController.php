@@ -173,11 +173,10 @@ class ProductController extends Controller
      */
     public function show(Product $product )
     {
-        // dd($product);
-            $Products = DB::table('products')->Paginate(4);
-            $v = $product->v;
             $now = now();
-            return view('products.show',compact('Products','product','now','v'));
+            $oferta_maxima = $product->ofertas()->max('oferta');
+    
+            return view('products.show',compact('product','now', 'oferta_maxima'    ));
     }
 
     /**

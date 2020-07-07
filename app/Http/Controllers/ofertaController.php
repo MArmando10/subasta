@@ -18,17 +18,14 @@ class ofertaController extends Controller
      */
     public function index(request $request)
     {
-       
-        $oferta = DB::table('ofertas')->Paginate(10);
-        
-        $p = $request->p;
-        // $products = Product::all();
-        $products = \App\User::all(); 
-        dd($oferta); 
-        // $v = $request->v;
-        // dd($productos[0]->ofertas);
 
-        return view('ofertas.index',compact('oferta','products'));
+        $ofertas = \App\Oferta::paginate(4);
+        $products = Product::where('id', '=', $request->input('product_id'))->get();  //DB::table('products')->where('id', '=', $request->input('product_id'))->get();
+        $ofertas = $products[0]->ofertas;
+        //dd($);
+        //dd($product[0]->ofertas);
+        //$ofertas = $product[0]->ofertas;
+        return view('ofertas.index',compact('ofertas'));
     }
 
     /**

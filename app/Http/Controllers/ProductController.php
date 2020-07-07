@@ -4,12 +4,10 @@ namespace App\Http\Controllers;
 
 use DB;
 use Auth;
-use App\Users;
 use Session;
 use App\imagen;
 use Carbon\Carbon;
 use App\Product;
-use App\Products;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Cache;
@@ -28,15 +26,21 @@ class ProductController extends Controller
      */
     public function index(Request $request)
     {
+        
         $Products = DB::table('products')->Paginate(4);
         //$p = $request->p;
         //$i = $imagen->i;
-        
+        /*
         $Users = \App\User::with(['products' => function ($query) {
             $query->orderBy('created_at', 'desc');
             }])->get();
         // dd($Users);
-        return view('products.index',compact('Users','Users','Products'));
+        */
+
+        $Users = \App\User::all();
+        dd($Users[0]->products[0]->ofertas[0]->product);
+        //dd($users[0]->products[0]->ofertas);
+        return view('products.index',compact('Users'));
      
     }
 
@@ -60,6 +64,7 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
+        // dd($request);
         $request->validate([
             'titulo' => 'required',
             'categoria'=>'required',
@@ -135,9 +140,9 @@ class ProductController extends Controller
 
             // ]);
             foreach ($files as $file) {
-
-                $archivo = Storage::putFile('imagenes', $file);
-
+                //dd($file);
+                $archivo = Storage::putFile('storage', new File($file));
+                //dd($file);
                 $imagen = new imagen();
                 $imagen->nombre = $file->getClientOriginalName();
                 $imagen->url = $archivo;
@@ -169,14 +174,14 @@ class ProductController extends Controller
      */
     public function show(Product $product )
     {
+        // dd($product);
             $Products = DB::table('venta')->Paginate(4);
-            // $ofertas = $product->ofertas;
+            //  $ofertas = $product->ofertas;
             // $users = $product->users;
-          
             $v = $product->v;
             $now = now();
             // $date = date('Y-m-d H:i:s');
-
+        // dd($product);
             return view('products.show',compact('Products','product','now','v'));
     }
 

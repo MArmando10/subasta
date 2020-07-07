@@ -17,9 +17,9 @@ class VentaController extends Controller
     {
         
         $venta = DB::table('venta')->Paginate(5);
-        $oferta = $venta->oferta;
+        // $oferta = $venta->oferta;
 
-        return view('products.index',compact('oferta'));
+        return view('products.index');
     }
 
     /**

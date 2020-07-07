@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use DB;
 use App\Oferta;
+use App\Product;
+use Auth;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 
@@ -16,7 +18,16 @@ class ofertaController extends Controller
      */
     public function index(request $request)
     {
-        // return view('products.index');
+       
+        //$ofertas = DB::table('ofertas')->Paginate(4);
+        //$p = $request->p;
+        //$i = $imagen->i;
+        $productos = Product::all();
+        //$ofertas = Auth::user()->ofertas();
+        
+        dd($productos[0]->user());
+
+        return view('ofertas.index',compact('ofertas'));
     }
 
     /**
@@ -37,29 +48,17 @@ class ofertaController extends Controller
      */
     public function store(Request $request)
     {
-       
-        $request->validate([
-
-            'oferta' => 'required',
-            // 'user_id'=>'required',
-            // 'product_id'=>'required',
-
-            ]);
-
-        $oferta = new Oferta();
-        
-        $oferta->user_id = \Auth::user()->id;
-        //$oferta->product_id = \Auth::user();
-
-        $oferta->product_id =request()->input('product_id');
-        
-        $oferta->oferta = request()->input('oferta');
         // dd($request->oferta);
-        // $oferta = Input::get('oferta', 'default oferta');
-        $oferta->save();
-        // dd($request);
-        // $oferta -> save();
-      
+        $request->validate([
+            'oferta' => 'required',
+        ]);
+            $oferta = new Oferta();
+            $oferta->user_id = \Auth::user()->id;
+            //$oferta->product_id = \Auth::user();
+            $oferta->product_id =request()->input('product_id');
+            $oferta->oferta = request()->input('oferta');
+            // $oferta = Input::get('oferta', 'default oferta');
+            $oferta -> save();
         return redirect()->route('product.index');
     }
 

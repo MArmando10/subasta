@@ -15,13 +15,13 @@
   }
 
   .img-height {
-    max-height: 60px;
+    max-height: 46px;
   }
 </style>
 
 <nav class="navbar navbar-expand-lg navbar-light bg-dark navigation-bar-style">
   <div class="navbar-brand back-logo">
-    <img class="img-fluid img-height" src="{{ asset('imagenes/goideal.jpeg')}}" alt="">
+    <img class="img-fluid img-height" src="{{ asset('storage/goideal.jpeg')}}" alt="">
   </div>
 
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"

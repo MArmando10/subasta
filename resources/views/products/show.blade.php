@@ -142,11 +142,7 @@ $index=0;
                 </div>
 
                 {{Form::close()}}
-                {{-- {{ Form::open(['route' => ['venta.index', $product], 'method' => 'get'] ) }}
-                <div class="form-group row-12">
-                    {{Form::submit('Ver todas las ofertas', ['class' => 'btn btn-primary mb-5'])}}
-                    {{Form::close()}}
-                </div> --}}
+                
             </div>
             </table>
             <br>

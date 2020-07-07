@@ -36,9 +36,8 @@ class ProductController extends Controller
             }])->get();
         // dd($Users);
         */
-
         $Users = \App\User::all();
-        dd($Users[0]->products[0]->ofertas[0]->product);
+        // dd($Users[0]->products[0]->ofertas[0]->product);
         //dd($users[0]->products[0]->ofertas);
         return view('products.index',compact('Users'));
      
@@ -175,13 +174,9 @@ class ProductController extends Controller
     public function show(Product $product )
     {
         // dd($product);
-            $Products = DB::table('venta')->Paginate(4);
-            //  $ofertas = $product->ofertas;
-            // $users = $product->users;
+            $Products = DB::table('products')->Paginate(4);
             $v = $product->v;
             $now = now();
-            // $date = date('Y-m-d H:i:s');
-        // dd($product);
             return view('products.show',compact('Products','product','now','v'));
     }
 

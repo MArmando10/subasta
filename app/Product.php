@@ -22,14 +22,17 @@ class Product extends Model
     }
 
     public function user() {
-        return $this->hasOne(User::class);
+        return $this->belongsTo(User::class);
     }
 
-    public function venta() {
-        return $this->hasOne(Product::class);
-    }
     public function ofertas() {
         return $this->hasMany(Oferta::class);
+    }
+
+
+    
+    public function venta() {
+        return $this->hasOne(Product::class);
     }
 
     //se requiere belongsTo

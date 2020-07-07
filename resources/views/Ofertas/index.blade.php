@@ -7,10 +7,10 @@
 <div class="container">
     
    <br>
-        <h1>Tabla productos</h1>
+        <h1>Ofertas</h1>
    <br>
    
-            @if(isset($ofertas))
+            @if(isset($oferta))
 
             <div class="table-responsive">
                 <table id="example" class="table table-striped table-bordered" style="width:100%">
@@ -23,12 +23,12 @@
                         </tr>
                     </thead>
 
-                    <tbody class="thead-dark">
-                        @foreach($ofertas as $p)  
+                    <tbody class="thead-dark text-center">
+                        @foreach($oferta as $p)  
                         <tr>
-                            <td>{{ $p }}</td>
-                            <td></td>
-                            <td></td>
+                            <td>{{ $p->product_id }}</td>
+                            <td>{{ $p->user_id }}</td>
+                            <td>{{ $p->oferta }}</td>
                         </tr>
                     @endforeach
                     </tbody>
@@ -38,4 +38,5 @@
         </div>
 @endif
 
+{{-- {{ $oferta->links() }} --}}
 @endsection

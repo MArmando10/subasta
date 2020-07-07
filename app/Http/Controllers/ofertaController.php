@@ -19,15 +19,16 @@ class ofertaController extends Controller
     public function index(request $request)
     {
        
-        //$ofertas = DB::table('ofertas')->Paginate(4);
-        //$p = $request->p;
-        //$i = $imagen->i;
-        $productos = Product::all();
-        //$ofertas = Auth::user()->ofertas();
+        $oferta = DB::table('ofertas')->Paginate(10);
         
-        dd($productos[0]->user());
+        $p = $request->p;
+        // $products = Product::all();
+        $products = \App\User::all(); 
+        dd($oferta); 
+        // $v = $request->v;
+        // dd($productos[0]->ofertas);
 
-        return view('ofertas.index',compact('ofertas'));
+        return view('ofertas.index',compact('oferta','products'));
     }
 
     /**

@@ -9,7 +9,6 @@
     <form action="" class="d-flex">
     <div>
         <a class="btn btn-secondary mb-5" href="{{route('product.create')}}">Agregar products </a>
-        
     </div>
 </form>
 

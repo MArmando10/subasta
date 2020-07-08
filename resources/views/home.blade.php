@@ -2,8 +2,16 @@
 
 @section('content')
 
+<style>
+    .tam {
+        font-size: 2.35rem;
+    }
+    
+    </style>
+
+
 <div class="container">
-    <div class="row justify-content-center">
+    <div class="row justify-content-center tam">
         <div class="col-md-8">
             <div class="card">
                 {{-- <div class="card-header">Dashboard</div> --}}
@@ -16,7 +24,7 @@
                     @endif
 
                     @if (Auth::user()->isAdmin())
-                    Bienvenido a GOIDEAL
+                    <h1 class="tam">Bienvenido a GOIDEAL</h1>
                     @else
                     Bienvenido
                     @endif
@@ -24,7 +32,7 @@
             </div>
             <br>
         </div>
-        {{ Form::open(['route' => ['home'], 'method' => 'get'] ) }}
+        {{ Form::open(['route' => ['subasta.index'], 'method' => 'get'] ) }}
         <input type="hidden" name="product_id" value="">
         {{Form::submit('Mis subastas', ['class' => 'btn btn-primary mb-5'])}}
 
@@ -38,7 +46,7 @@
     <div class="bg-secondary">
         <div class="row">
             <div class="col-3">
-                <h4 class="text-write">Mejores Precios</h4>
+                <h4 class="text-write tam" style="color: white" >Mejores Precios</h4>
             </div>
 
             <div class="container-sm">
@@ -92,7 +100,7 @@ $index++;
         <div class="col">
             <div class="row">
                 <div class="col-3">
-                    <h4 class="text-write">Explora lo mejor en hogar y cocina</h4>
+                    <h4 class="text-write tam" style="color: white">Explora lo mejor en hogar y cocina</h4>
                 </div>
                 <div class="container-sm">
                     <div class="row">

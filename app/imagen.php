@@ -13,6 +13,9 @@ class imagen extends Model
 
     public function producto() {
     	return $this->HasOne('App\Product');
+    }
 
+    public function subasta(){
+        return $this->hasMany(Subasta::class);
     }
 }

@@ -16,4 +16,8 @@ class Oferta extends Model
         return $this->belongsTo(Product::class);
     }
 
+    public function subasta(){
+        return $this->hasOne(Subasta::class);
+    }
+
 }

@@ -17,6 +17,20 @@
         min-width: 250px;
     }
 
+    img {
+  opacity: 0.5;
+}
+
+img:hover {
+  opacity: 1.0;
+}
+
+.imgCir {
+    width:300px;
+    height:300px;
+    border-radius:150px;
+}
+
 
 </style>
 @php
@@ -35,12 +49,11 @@ $index=0;
     <div class="row" style="padding: 15px;">
         <div class="col-7">
             <div class="row">
-                
                 @if ($product->imagenes->count() > 0)
                 <div class="col-1" style="flex-flow: wrap; z-index: 100">
                     @foreach ($product->imagenes as $imagen)
-                    <div style="margin: 2px; border-color: blue; border-left-style: double;">
-                        <img src="{{asset($imagen->url)}}" alt="adasd.jpg" style="height: auto; width: 80px; "
+                    <div  style="margin: 2px; border-color: blue; border-left-style: double;">
+                        <img class="imgCir" src="{{asset($imagen->url)}}" alt="adasd.jpg" style="height: auto; width: 80px; "
                             onclick="imageSelected(@php echo $index; @endphp, '{{asset($imagen->url)}}')">
                     </div>
                     @php

@@ -26,3 +26,5 @@ Route::resource('/product', 'ProductController');
 Route::resource('/venta', 'VentaController');
 
 Route::resource('/oferta', 'ofertaController');
+
+Route::resource('/subasta', 'SubastaController');

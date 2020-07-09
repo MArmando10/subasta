@@ -44,7 +44,7 @@ $index=0;
         <div class="col-7">
 
             <div class="row">
-                {{ $product}}
+                {{ $product }}
 
                 {{--
 

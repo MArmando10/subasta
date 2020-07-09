@@ -2,9 +2,9 @@
 
 @section('content')
 
-<script src="jquery-1.7.2.min.js"></script>
-<script type="text/javascript" src="jquery.mlens-1.2.min.js"></script>
-<style>
+{{-- <script src="jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="jquery.mlens-1.2.min.js"></script> --}}
+{{-- <style>
     .border-lines {
         background-color: darkgrey;
         height: 10px;
@@ -32,7 +32,7 @@ img:hover {
 }
 
 
-</style>
+</style> --}}
 @php
 $index=0;
 @endphp
@@ -126,12 +126,12 @@ $index=0;
     <div class="row border-lines"></div> <!-- Linea media -->
 
     <div class="row">
-        <div class="col-3 text-center mx-auto d-block">
+        <div class="col-3 text-center mx-auto d-block tamle">
             <br>
             <h2>Caracteristicas</h2>
-            <p class="card-text">Titulo: {{$product->titulo}}</p>
+            <p class="card-text">Titulo: {{$product->marca}}</p>
             <p class="card-text">Categoría: {{$product->categoria}}</p>
-            <p class="card-text">Condición: {{$product->condición}}</p>
+            <p class="card-text">Condición: {{$product->condicion}}</p>
             <p class="card-text">Marca: {{$product->marca}}</p>
             <p class="card-text">Descripcion: {{$product->descripcion}}</p>
         </div>
@@ -161,13 +161,6 @@ $index=0;
                         <h2 class="elemento strong">Ultimas Ofertas</h2>
                     </div>
                         <div class="col float-right">
-
-                            {{-- {{ Form::open(['route' => ['oferta.index'], 'method' => 'get']) }}
-
-                            {{Form::submit('Ver todas las ofertas', ['class' => 'btn btn-primary mb-5'])}}
-
-
-                            {{Form::close()}} --}}
                             {{ Form::open(['route' => ['oferta.index'], 'method' => 'get'] ) }}
                             <input type="hidden" name="product_id" value="{{$product->id}}">
                             {{Form::submit('Ver todas las ofertas', ['class' => 'btn btn-primary mb-5'])}}

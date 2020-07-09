@@ -34,6 +34,7 @@ class CreateProductsTable extends Migration
             $table->integer('Largo');
             $table->integer('Peso');
             $table->string('geografi');
+            $table->integer('status')->default(1);
             $table->foreignId('user_id');
             $table->timestamps();
 

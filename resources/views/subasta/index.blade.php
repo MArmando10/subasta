@@ -28,31 +28,34 @@
 {{--
 {{dd($subasta)}}
 --}}
+
+{{-- 
 @if($products->fechaFinal ?? ' ')
 <style>
     .opacity-if {
         filter: opacity(0.5);
     }
 </style>
-{{-- entra aqui 2 --}}
+ entra aqui 2 
  @else
 entra aqui
  @endif
+ --}}
 <body>
     <div class="table-responsive">
         <table id="example" class="table table-striped table-bordered" style="width:100%">
             <div class="container">
-                @foreach ($Users as $user)
-                @foreach ( $user->products as $product)
+                @foreach ( $products as $product)
+                 
                 <div class="row intro">
                     
                     <div class="col opacity-if ">
-                        {{-- {{ $products->imagenes->count() }} --}}
+                        {{-- {{ $product->imagenes->count() }}  --}}
                         @if ($product->imagenes->count() > 0)
-                        @for ($i = 0; $i < 1; $i++) <img src="{{asset($product->imagenes[$i]->url)}}" alt="adasd.jpg"
-                            width="200" style="">
+                            @for ($i = 0; $i < 1; $i++) 
+                                <img src="{{asset($product->imagenes[$i]->url)}}" alt="adasd.jpg" width="200">
                             @endfor
-                            @endif
+                        @endif
                     </div>
                     <div class="col info opacity-if tam">
                         <h2 class="card-text">{{$product->marca}}</h2>
@@ -69,6 +72,7 @@ entra aqui
                         </div>
                         <div class="col float-right align-self-end">
                             {{ Form::open(['route' => ['subasta.show', $product], 'method' => 'get'] ) }}
+                            <input type="hidden" name="product_id" value="{{$product->id}}">
                             {{Form::submit('Más Detalles', ['class' => 'btn btn-primary  mb-5'])}}
 
                             {{ Form::close() }}
@@ -77,7 +81,6 @@ entra aqui
 
                 </div>
                 <br>
-                @endforeach
                 @endforeach
             </div>
         </table>

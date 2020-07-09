@@ -28,14 +28,7 @@ class ProductController extends Controller
     {
         
         $Products = DB::table('products')->Paginate(4);
-        //$p = $request->p;
-        //$i = $imagen->i;
-        /*
-        $Users = \App\User::with(['products' => function ($query) {
-            $query->orderBy('created_at', 'desc');
-            }])->get();
-        // dd($Users);
-        */
+    
         $Users = \App\User::all();
         // dd($Users[0]->products[0]->ofertas[0]->product);
         //dd($users[0]->products[0]->ofertas);

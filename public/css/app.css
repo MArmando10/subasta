@@ -82,8 +82,11 @@ body {
 hr {
   box-sizing: content-box;
   height: 0;
+  background-color: black;
+  height: 15px;
   overflow: visible;
 }
+
 
 h1,
 h2,
